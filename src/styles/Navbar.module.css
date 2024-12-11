@@ -1,12 +1,20 @@
 .nav {
   display: flex;
+  align-items: center;
   justify-content: center;
   background-color: #F78E11;
   padding: 1rem;
 }
 
+.nav > a, input {
+  margin-right: 1rem;
+}
+
+.nav > img {
+  margin-right: 0.5rem;
+}
+
 .nav a {
   color: black;
-  margin-right: 1rem;
   text-decoration: none;
 }
