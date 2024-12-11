@@ -1,10 +1,12 @@
 .nav {
-  background-color: #333;
+  display: flex;
+  justify-content: center;
+  background-color: #F78E11;
   padding: 1rem;
 }
 
 .nav a {
-  color: #fff;
+  color: black;
   margin-right: 1rem;
   text-decoration: none;
 }
