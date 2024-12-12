@@ -7,7 +7,7 @@ export default function Groceries() {
   useEffect(() => {
     async function fetchGroceries() {
       try {
-        const response = await axios.get("/dummy-data/groceries.json");
+        const response = await axios.get("http://localhost:3000/dummy-data/groceries");
 
         // set the state of the groceries to the response.data
         setGroceries(response.data);
@@ -23,6 +23,7 @@ export default function Groceries() {
     sessionStorage.setItem("groceries", JSON.stringify(groceries));
     console.log(JSON.parse(sessionStorage.getItem("groceries")));
   }, [groceries]);
+
   return (
     <div>
       <h1>Groceries</h1>
