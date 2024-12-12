@@ -1,14 +1,14 @@
 import styles from "../styles/GroceryList.module.css";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function GroceryList({ items }) {
   const [purchased, setPurchased] = useState([]);
-  async function purchase() {
-    items.forEach(i => {
-      setPurchased(i);
-    });
-    console.log("hello", purchased);
+  useEffect(() => {
+  async function purchase(key) {
+    const pItem = items.filter(i => i.id === key)
+    setPurchased([...purchased], pItem)
   }
+  }, []);
 
   return (
     <div className={styles.list}>
@@ -17,7 +17,7 @@ export default function GroceryList({ items }) {
           <h2>{i.name}</h2>
           <p>Category: {i.category}</p>
           <p>Price: {i.price}</p>
-          <button onClick={purchase}>Buy!</button>
+          <button>Buy!</button>
         </div>
       ))}
     </div>
