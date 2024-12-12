@@ -4,17 +4,27 @@ import styles from "../styles/Navbar.module.css";
 export default function Navbar() {
   return (
     <nav className={styles.nav}>
-      <div className="nav-col">
-        <img src="https://www.shareicon.net/data/512x512/2016/08/01/640375_smile_512x512.png" alt="mecazon logo" height="25px" width="25px" />
-        <Link to="/">MECAZON</Link>
+      <div className={`${styles.col} ${styles.brand}`}>
+        <Link className={styles.logoWrapper} to="/">
+          <img className={styles.logo} src="/MECAZON_logo.svg" alt="mecazon logo" height="35px" width="35px" />
+          <p>MECAZON</p>
+        </Link>
       </div>
 
-      <div className="nav-col">
+      <div className={styles.col}>
         <Search></Search>
       </div>
 
-      <div className="nav-col">
-        <Link to="/groceries">Sign in</Link>
+      <div className={`${styles.col} ${styles.userButtons}`}>
+        <Link className={styles.loginLink} to="/">
+          <p>Sign in</p>
+
+          <img src="/account_icon.svg" height="30px" width="30px" alt="user account icon" />
+        </Link>
+
+        <Link className={styles.cartLink} to="/cart">
+          <img src="/cart_icon.svg" alt="shopping cart icon" height="50px" width="50px" />
+        </Link>
       </div>
     </nav>
   );
