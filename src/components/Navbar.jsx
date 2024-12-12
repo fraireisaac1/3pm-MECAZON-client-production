@@ -12,11 +12,13 @@ export default function Navbar() {
       </div>
 
       <div className={styles.col}>
-        <Search></Search>
+        <Link to="/groceries">
+          <Search></Search>
+        </Link>
       </div>
 
       <div className={`${styles.col} ${styles.userButtons}`}>
-        <Link className={styles.loginLink} to="/">
+        <Link className={styles.loginLink} to="/login">
           <p>Sign in</p>
 
           <img src="/account_icon.svg" height="30px" width="30px" alt="user account icon" />
