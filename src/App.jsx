@@ -1,6 +1,7 @@
 // src/App.jsx
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
+import Login from "./pages/Login";
 import Groceries from "./pages/Groceries";
 import Navbar from "./components/Navbar";
 // import Header from "./components/Header";
@@ -13,6 +14,7 @@ export default function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/groceries" element={<Groceries />} />
         </Routes>
         <Footer />
