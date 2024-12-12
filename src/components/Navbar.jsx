@@ -1,15 +1,31 @@
 import { Link } from "react-router-dom";
-import Logo from "/MECAZON_logo.svg";
 import Search from "../components/Search";
 import styles from "../styles/Navbar.module.css";
 export default function Navbar() {
   return (
     <nav className={styles.nav}>
-      <Link to="/">
-        <img src="/MECAZON_logo.svg" alt="MECHAZON LOGO" /> MECHAZON
-      </Link>
-      <Search></Search>
-      <Link to="/groceries">Groceries</Link>
+      <div className={`${styles.col} ${styles.brand}`}>
+        <Link className={styles.logoWrapper} to="/">
+          <img className={styles.logo} src="/MECAZON_logo.svg" alt="mecazon logo" height="35px" width="35px" />
+          <p>MECAZON</p>
+        </Link>
+      </div>
+
+      <div className={styles.col}>
+        <Search></Search>
+      </div>
+
+      <div className={`${styles.col} ${styles.userButtons}`}>
+        <Link className={styles.loginLink} to="/">
+          <p>Sign in</p>
+
+          <img src="/account_icon.svg" height="30px" width="30px" alt="user account icon" />
+        </Link>
+
+        <Link className={styles.cartLink} to="/cart">
+          <img src="/cart_icon.svg" alt="shopping cart icon" height="50px" width="50px" />
+        </Link>
+      </div>
     </nav>
   );
 }
