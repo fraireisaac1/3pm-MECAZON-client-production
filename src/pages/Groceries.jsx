@@ -21,13 +21,28 @@ export default function Groceries() {
   useEffect(() => {
     // console.log(groceries);
     sessionStorage.setItem("groceries", JSON.stringify(groceries));
-    console.log(JSON.parse(sessionStorage.getItem("groceries")));
+    // console.log(JSON.parse(sessionStorage.getItem("groceries")));
   }, [groceries]);
+
+  const [productIndex, setProductIndex] = useState(0);
+
+  useEffect(() => {
+    if (productIndex < 0) {
+      setProductIndex(0);
+    }
+    if (productIndex > groceries.length-1) {
+      setProductIndex(groceries.length - 1);
+    }
+  },[productIndex])
 
   return (
     <div>
       <h1>Groceries</h1>
-      <GroceryList items={groceries} />
+      <div>
+        <button onClick={() => { setProductIndex(prev => prev - 1) }}>-</button>
+        <GroceryList items={groceries.slice(productIndex, productIndex + 3)} />
+        <button onClick={() => { setProductIndex(prev => prev + 1) }}>+</button>
+      </div>
     </div>
   );
 }

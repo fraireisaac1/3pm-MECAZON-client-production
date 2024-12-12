@@ -1,0 +1,25 @@
+.searchWrapper {
+    position: relative;
+}
+
+.searchInput {
+    border-radius: 0.3rem;
+    border: 1px solid black;
+    height: 1.6rem;
+    width: 20rem;
+}
+
+.searchInput::placeholder {
+    text-align: center;
+    color: black;
+}
+
+.searchInput:focus {
+    outline: none;
+}
+
+.searchIcon {
+    position: absolute;
+    right: 0;
+    top: 10%;
+}
