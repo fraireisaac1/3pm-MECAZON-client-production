@@ -17,9 +17,7 @@ export default function Groceries() {
   }, []);
 
   useEffect(() => {
-    // console.log(groceries);
     sessionStorage.setItem("groceries", JSON.stringify(groceries));
-    // console.log(JSON.parse(sessionStorage.getItem("groceries")));
   }, [groceries]);
 
   const [productIndex, setProductIndex] = useState(0);
