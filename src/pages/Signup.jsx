@@ -1,5 +1,5 @@
 // basic skeleton for login
-import styles from "../styles/Register.module.css";
+import styles from "../styles/UserForms.module.css";
 import { Link } from "react-router-dom";
 
 export default function Signup() {
