@@ -14,9 +14,9 @@ export default function Footer() {
                 <div className={styles.column}>
                     <h1>Socials</h1>
                     <div className={[styles.dataColumn]}>
-                        <a href="/" className={styles.socials}>Facebook</a>
-                        <a href="/" className={styles.socials}>Instagram</a>
-                        <a href="/" className={styles.socials}>Twitter</a>
+                        <a href="https://www.facebook.com/westmec/" className={styles.socials}>Facebook</a>
+                        <a href="https://www.instagram.com/westmec_cccoding/" className={styles.socials}>Instagram</a>
+                        <a href="https://twitter.com/westmec" className={styles.socials}>Twitter</a>
                     </div>
                 </div>
                 <div className={styles.divider}></div>
@@ -33,7 +33,7 @@ export default function Footer() {
                         </div>
                     </div>
                     <div className={styles.copyrights}>
-                        <h3>2024 - MECAZON - All rights reserved</h3>
+                        <h3>2024 - MECAZON &copy; - All rights reserved</h3>
                     </div>
                 </div>
             </div>
