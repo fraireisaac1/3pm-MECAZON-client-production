@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import styles from "../styles/Groceries.module.css";
 import GroceryList from "../components/GroceryList";
 import axios from "axios";
 
@@ -34,11 +35,8 @@ export default function Groceries() {
   },[productIndex])
 
   return (
-    <div>
-      <h1>Groceries</h1>
-        <div>
-          <GroceryList items={groceries} />
-        </div>
+    <div className={styles.background}>
+      <GroceryList items={groceries} />
     </div>
   );
 }
