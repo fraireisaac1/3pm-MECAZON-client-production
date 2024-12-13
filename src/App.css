@@ -12,3 +12,6 @@ body {
   background-color: #fdf8f0;
 }
 
+.main {
+  flex: 1;
+}

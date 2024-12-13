@@ -20,12 +20,14 @@ export default function App() {
     <>
       <Router>
         <Navbar setSearchValue={setSearchValue} />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Signup />} />
-            <Route path="/groceries" element={<Groceries searchValue={searchValue} setSearchValue={setSearchValue} />} />
-          </Routes>
+          <div className="main">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Signup />} />
+              <Route path="/groceries" element={<Groceries searchValue={searchValue} setSearchValue={setSearchValue} />} />
+            </Routes>
+          </div>
           {/* <Modal /> */}
         <Footer />
       </Router>
