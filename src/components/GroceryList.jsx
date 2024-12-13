@@ -5,7 +5,7 @@ export default function GroceryList({ items }) {
     <div className={styles.list}>
       {items.map(i => (
         <div key={i.id} className={styles.item}>
-          <img src="https://avatars.githubusercontent.com/u/131179727?s=200&v=4" alt={i.name} />
+          <img src={"https://picsum.photos/seed/"+i.name+"/200/200.jpg"} alt={i.name} />
           <div className={styles.description}>
             <h1 className={styles.text}>${i.price}</h1>
             <h2 className={styles.text}>{i.name}</h2>
