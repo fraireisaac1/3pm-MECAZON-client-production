@@ -33,7 +33,7 @@ export default function Carousel({ count }) {
 
     return (
       <div className={styles.row}>
-        <button className={styles.btn} onClick={() => { incrementIndex(-count); }}>Back</button>
+        <button className={styles.btn} onClick={() => { incrementIndex(-count); }}>⬅</button>
           <div className={styles.items}>
             {groceries.slice(index, index + count).map(i => (
               <div className={styles.item} key={i.id}>
@@ -47,7 +47,7 @@ export default function Carousel({ count }) {
               </div>
             ))}
           </div>
-        <button className={styles.btn} onClick={() => { incrementIndex(count); }}>Forward</button>
+        <button className={styles.btn} onClick={() => { incrementIndex(count); }}>➡</button>
       </div>
     );
 }
