@@ -8,7 +8,7 @@ export default function Footer() {
                     <h1>Help</h1>
                     <input className={styles.emailInput} type="email" name="" id="" placeholder="Email" />
                     <button className={styles.submitBtn}>Submit</button>
-                    <h2>Contact us</h2>
+                    <p>Contact us</p>
                 </div>
                 <div className={styles.divider}></div>
                 <div className={styles.column}>

@@ -54,6 +54,10 @@
     flex-direction: column;
 }
 
+.column p {
+    color: white;
+}
+
 .row_spaced {
     display: flex;
     width: 100%;
