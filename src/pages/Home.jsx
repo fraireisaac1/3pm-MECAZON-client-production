@@ -17,7 +17,8 @@ export default function Home() {
   // },[]);
 
   return <>
-    <h1>Return Data</h1>
+    <Carousel count={Math.ceil(self.innerWidth/200)<10?Math.ceil(self.innerWidth/200):10}/>
+    <Carousel count={Math.ceil(self.innerWidth/200)<10?Math.ceil(self.innerWidth/200):10}/>
     <Carousel count={Math.ceil(self.innerWidth/200)<10?Math.ceil(self.innerWidth/200):10}/>
   </>;
 }

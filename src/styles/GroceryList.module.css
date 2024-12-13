@@ -5,10 +5,13 @@
 }
 
 .item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   border: 1px solid #ddd;
   padding: 1rem;
   margin: 0.5rem;
   width: calc(30% - 1rem);
   border-radius: 1rem;
-  background-color: olivedrab;
 }
