@@ -1,4 +1,7 @@
 .searchWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     position: relative;
 }
 
@@ -7,6 +10,8 @@
     border: 1px solid black;
     height: 1.6rem;
     width: 20rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
 }
 
 .searchInput::placeholder {
@@ -20,7 +25,5 @@
 
 .searchIcon {
     position: absolute;
-    right: 0;
-    top: 10%;
-    cursor: pointer;
+    right: 0.3rem;
 }

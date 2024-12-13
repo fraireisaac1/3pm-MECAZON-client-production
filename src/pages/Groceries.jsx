@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import styles from "../styles/Groceries.module.css";
 import GroceryList from "../components/GroceryList";
 import axios from "axios";
 
@@ -38,8 +39,8 @@ export default function Groceries({searchValue}) {
   }, [searchValue])
 
   return (
-    <div>
-      <h1 ref={resultsTextRef}>Results for {searchValue}</h1>
+    <div className={styles.background}>
+      <h1 ref={resultsTextRef} className={styles.text}>Results for {searchValue}</h1>
         <div>
           <GroceryList items={groceries} />
         </div>
