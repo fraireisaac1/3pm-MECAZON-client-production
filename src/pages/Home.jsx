@@ -1,7 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
 import Carousel from "../components/Carousel";
-// import axios from "axios";
+import axios from "axios";
 
 export default function Home() {
   // const api = axios.create({
@@ -17,8 +17,21 @@ export default function Home() {
   //   getdata();
   // },[]);
 
+  const [groceries, setGroceries] = useState([]);
+  useEffect(() => {
+    async function fetchGroceries() {
+      try {
+        const response = await axios.get("/dummy-data/groceries.json");
+        setGroceries(response.data);
+      } catch (err) {
+        console.error("something went wrong fetching groceries", err);
+      }
+    }
+    fetchGroceries();
+  }, []);
+
   return <>
-    <Carousel count={Math.ceil(self.innerWidth/200)<10?Math.ceil(self.innerWidth/200):10}/>
+    <Carousel count={Math.ceil(self.innerWidth/200)<10?Math.ceil(self.innerWidth/200):10} data={groceries}/>
     <div className={styles.banner}>
       <img className={styles.image} src="https://media-public.canva.com/ADwTE/MAGHDfADwTE/1/s.png" alt="Black Man" draggable="false"/>
       <div className={styles.column}>
