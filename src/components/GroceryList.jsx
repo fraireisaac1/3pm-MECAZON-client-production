@@ -1,23 +1,26 @@
 import styles from "../styles/GroceryList.module.css";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from "react";
 
 export default function GroceryList({ items }) {
   const [purchased, setPurchased] = useState([]);
-  useEffect(() => {
-  async function purchase(key) {
-    const pItem = items.filter(i => i.id === key)
-    setPurchased([...purchased], pItem)
+  const [selectedItem, setSelectedItem] = useState();
+  const purchase = (k) => {
+    const pItem = items.filter((i) => i.id === k);
+    setPurchased([...purchased], pItem);
+    console.log(purchased);
   }
-  }, []);
+  useEffect(() => {
+    purchase();
+  }, [selectedItem]);
 
   return (
     <div className={styles.list}>
-      {items.map(i => (
+      {items.map((i) => (
         <div key={i.id} className={styles.item}>
           <h2>{i.name}</h2>
           <p>Category: {i.category}</p>
           <p>Price: {i.price}</p>
-          <button>Buy!</button>
+          <button onClick={purchase} k={i.id}>Buy!</button>
         </div>
       ))}
     </div>

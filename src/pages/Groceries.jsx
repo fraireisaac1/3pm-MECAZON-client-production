@@ -4,10 +4,13 @@ import axios from "axios";
 
 export default function Groceries() {
   const [groceries, setGroceries] = useState([]);
+
+  const [productIndex, setProductIndex] = useState(-11);
   useEffect(() => {
     async function fetchGroceries() {
       try {
         const response = await axios.get("http://localhost:3000/dummy-data/groceries");
+        // http://localhost:5000/product-inventory/product
 
         // set the state of the groceries to the response.data
         setGroceries(response.data);
@@ -24,16 +27,15 @@ export default function Groceries() {
     // console.log(JSON.parse(sessionStorage.getItem("groceries")));
   }, [groceries]);
 
-  const [productIndex, setProductIndex] = useState(0);
 
-  useEffect(() => {
-    if (productIndex < 0) {
-      setProductIndex(0);
-    }
-    if (productIndex > groceries.length-1) {
-      setProductIndex(groceries.length - 1);
-    }
-  },[productIndex])
+  // useEffect(() => {
+  //   if (productIndex < 0) {
+  //     setProductIndex(0);
+  //   }
+  //   if (productIndex > groceries.length - 1) {
+  //     setProductIndex(groceries.length - 1);
+  //   }
+  // },[productIndex])
 
   return (
     <div>
