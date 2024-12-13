@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Search from "../components/Search";
+import Search from "../components/SearchBar";
 import styles from "../styles/Navbar.module.css";
 export default function Navbar() {
   return (
@@ -12,7 +12,7 @@ export default function Navbar() {
       </div>
 
       <div className={styles.col}>
-        <Link to="/groceries">
+        <Link to="/search-results">
           <Search></Search>
         </Link>
       </div>
