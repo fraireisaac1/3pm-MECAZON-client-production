@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import Signup from "./pages/Signup"
 import Groceries from "./pages/Groceries";
 import Navbar from "./components/Navbar";
-import SearchResults from "./pages/SearchResults";
 import Footer from "./components/Footer";
 import "./App.css";
 
@@ -13,7 +13,9 @@ import "./App.css";
 import Modal from "./components/Modal";
 
 export default function App() {
+  // Global state for search bar functionality
   const [searchValue, setSearchValue] = useState("");
+
   return (
     <>
       <Router>
@@ -21,9 +23,10 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Signup />} />
             <Route path="/groceries" element={<Groceries searchValue={searchValue} setSearchValue={setSearchValue} />} />
           </Routes>
-          <Modal />
+          {/* <Modal /> */}
         <Footer />
       </Router>
     </>
