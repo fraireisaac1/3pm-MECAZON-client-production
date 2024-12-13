@@ -8,14 +8,16 @@ export default function Carousel({ count }) {
     const [index, setIndex] = useState(0)
     const [groceries, setGroceries] = useState([]);
 
-    useEffect(() => {
-        if (index < 0) {
-            setIndex(0);
-        }
-        if (index > groceries.length-count) {
-          setIndex(groceries.length-count);
-        }
-    }, [index]);
+    function incrementIndex(num) {
+      const next_num = index+num
+      if (next_num < 0) {
+        setIndex(0);
+      } else if (next_num > groceries.length-count) {
+        setIndex(groceries.length-count);
+      } else {
+        setIndex(next_num);
+      }
+    };
 
     useEffect(() => {
       async function fetchGroceries() {
@@ -31,7 +33,7 @@ export default function Carousel({ count }) {
 
     return (
       <div className={styles.row}>
-        <button className={styles.btn} onClick={() => { setIndex(prev => prev -= count); }}>Back</button>
+        <button className={styles.btn} onClick={() => { incrementIndex(-count); }}>Back</button>
           <div className={styles.items}>
             {groceries.slice(index, index + count).map(i => (
               <div className={styles.item} key={i.id}>
@@ -44,7 +46,7 @@ export default function Carousel({ count }) {
               </div>
             ))}
           </div>
-        <button className={styles.btn} onClick={() => {setIndex((prev) => prev += count); }}>Forward</button>
+        <button className={styles.btn} onClick={() => { incrementIndex(count); }}>Forward</button>
       </div>
     );
 }

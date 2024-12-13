@@ -25,17 +25,6 @@ export default function Groceries({searchValue}) {
   //   sessionStorage.setItem("groceries", JSON.stringify(groceries));
   // }, [groceries]);
 
-  const [productIndex, setProductIndex] = useState(0);
-
-  useEffect(() => {
-    if (productIndex < 0) {
-      setProductIndex(0);
-    }
-    if (productIndex > groceries.length-1) {
-      setProductIndex(groceries.length - 1);
-    }
-  },[productIndex])
-
   useEffect(() => {
     async function renderSearchResults() {
       if (searchValue) {
