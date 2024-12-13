@@ -1,7 +1,9 @@
+import styles from "../styles/Modal.module.css";
+
 export default function Modal() {
     return (
-        <div>
+        <dialog>
             
-        </div>
+        </dialog>
     );
 }
