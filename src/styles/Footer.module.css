@@ -20,11 +20,7 @@
     background-color: #0e3249;
     color: #f78e11;
     padding-bottom: 1rem;
-    flex: 1;
     max-height: 12rem;
-    /* position: absolute; */
-    /* width: 100%; */
-    /* bottom: 0; */
 }
 
 .divider {
