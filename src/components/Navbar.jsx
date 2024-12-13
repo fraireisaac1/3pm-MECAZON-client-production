@@ -12,9 +12,7 @@ export default function Navbar() {
       </div>
 
       <div className={styles.col}>
-        <Link to="/groceries">
-          <Search></Search>
-        </Link>
+        <Search></Search>
       </div>
 
       <div className={`${styles.col} ${styles.userButtons}`}>
