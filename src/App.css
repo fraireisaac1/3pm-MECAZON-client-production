@@ -9,5 +9,6 @@ body {
   flex-direction: column;
   position: relative;
   min-height: 100vh;
+  background-color: #fdf8f0;
 }
 
