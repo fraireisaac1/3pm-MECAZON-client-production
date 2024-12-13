@@ -1,12 +1,15 @@
 import styles from "../styles/SearchBar.module.css";
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Search({setSearchValue}) {
     const inputRef = useRef(null);
+    const navigate = useNavigate();
 
     function submitSearch(e) {
         if (e.key === "Enter" || e.type === "click") {
             setSearchValue(inputRef.current.value);
+            navigate("/groceries");
         }
     }
 
