@@ -28,7 +28,7 @@ export default function App() {
               <Route path="/groceries" element={<Groceries searchValue={searchValue} setSearchValue={setSearchValue} />} />
             </Routes>
           </div>
-          {/* <Modal /> */}
+          <Modal />
         <Footer />
       </Router>
     </>
