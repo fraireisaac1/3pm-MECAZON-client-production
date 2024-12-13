@@ -10,6 +10,7 @@ export default function Groceries({searchValue}) {
   async function fetchGroceries() {
     try {
       const response = await axios.get("/dummy-data/groceries.json");
+      console.log(response.data);
       setGroceries(response.data);
     } catch (err) {
       console.error("something went wrong fetching groceries", err);
@@ -20,9 +21,9 @@ export default function Groceries({searchValue}) {
     fetchGroceries();
   }, []);
 
-  useEffect(() => {
-    sessionStorage.setItem("groceries", JSON.stringify(groceries));
-  }, [groceries]);
+  // useEffect(() => {
+  //   sessionStorage.setItem("groceries", JSON.stringify(groceries));
+  // }, [groceries]);
 
   const [productIndex, setProductIndex] = useState(0);
 
