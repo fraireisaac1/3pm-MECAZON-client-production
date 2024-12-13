@@ -1,5 +1,6 @@
 // src/App.jsx
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useState } from "react";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Groceries from "./pages/Groceries";
@@ -12,15 +13,17 @@ import "./App.css";
 import Modal from "./components/Modal";
 
 export default function App() {
+  const [searchValue, setSearchValue] = useState("");
   return (
     <>
       <Router>
-        <Navbar />
+        <Navbar setSearchValue={setSearchValue} />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/groceries" element={<Groceries />} />
+            <Route path="/groceries" element={<Groceries searchValue={searchValue} setSearchValue={setSearchValue} />} />
           </Routes>
+          <Modal />
         <Footer />
       </Router>
     </>
