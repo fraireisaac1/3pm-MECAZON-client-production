@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
-import styles from "../styles/Groceries.module.css";
+import { useState, useEffect, useRef } from "react";
 import GroceryList from "../components/GroceryList";
 import axios from "axios";
 
-export default function Groceries() {
+export default function Groceries({searchValue}) {
   const [groceries, setGroceries] = useState([]);
+  const resultsTextRef = useRef(null);
+
   useEffect(() => {
     async function fetchGroceries() {
       try {
@@ -18,9 +19,7 @@ export default function Groceries() {
   }, []);
 
   useEffect(() => {
-    // console.log(groceries);
     sessionStorage.setItem("groceries", JSON.stringify(groceries));
-    // console.log(JSON.parse(sessionStorage.getItem("groceries")));
   }, [groceries]);
 
   const [productIndex, setProductIndex] = useState(0);
@@ -34,9 +33,16 @@ export default function Groceries() {
     }
   },[productIndex])
 
+  useEffect(() => {
+    Object.keys
+  }, [searchValue])
+
   return (
-    <div className={styles.background}>
-      <GroceryList items={groceries} />
+    <div>
+      <h1 ref={resultsTextRef}>Results for {searchValue}</h1>
+        <div>
+          <GroceryList items={groceries} />
+        </div>
     </div>
   );
 }
