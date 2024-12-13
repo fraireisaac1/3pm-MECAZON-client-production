@@ -12,11 +12,11 @@ export default function App() {
     <>
       <Router>
         <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/groceries" element={<Groceries />} />
-        </Routes>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/groceries" element={<Groceries />} />
+          </Routes>
         <Footer />
       </Router>
     </>

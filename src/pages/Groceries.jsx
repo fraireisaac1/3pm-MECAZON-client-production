@@ -36,11 +36,9 @@ export default function Groceries() {
   return (
     <div>
       <h1>Groceries</h1>
-      <div>
-        <button onClick={() => { setProductIndex(prev => prev - 1) }}>-</button>
-        <GroceryList items={groceries.slice(productIndex, productIndex + 3)} />
-        <button onClick={() => { setProductIndex(prev => prev + 1) }}>+</button>
-      </div>
+        <div>
+          <GroceryList items={groceries} />
+        </div>
     </div>
   );
 }
