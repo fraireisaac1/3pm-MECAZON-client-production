@@ -1,50 +1,54 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import styles from "../styles/Groceries.module.css";
 import GroceryList from "../components/GroceryList";
 import axios from "axios";
 
-export default function Groceries() {
+export default function Groceries({searchValue}) {
   const [groceries, setGroceries] = useState([]);
+  const resultsTextRef = useRef(null);
 
-  const [productIndex, setProductIndex] = useState(-11);
-  useEffect(() => {
-    async function fetchGroceries() {
-      try {
-        const response = await axios.get("http://localhost:3000/dummy-data/groceries");
-        // http://localhost:5000/product-inventory/product
-
-        // set the state of the groceries to the response.data
-        setGroceries(response.data);
-      } catch (err) {
-        console.error("something went wrong fetching groceries", err);
-      }
+  async function fetchGroceries() {
+    try {
+      const response = await axios.get("/dummy-data/groceries.json");
+      console.log(response.data);
+      setGroceries(response.data);
+    } catch (err) {
+      console.error("something went wrong fetching groceries", err);
     }
+  }
+
+  useEffect(() => {
     fetchGroceries();
   }, []);
 
-  useEffect(() => {
-    // console.log(groceries);
-    sessionStorage.setItem("groceries", JSON.stringify(groceries));
-    // console.log(JSON.parse(sessionStorage.getItem("groceries")));
-  }, [groceries]);
-
-
   // useEffect(() => {
-  //   if (productIndex < 0) {
-  //     setProductIndex(0);
-  //   }
-  //   if (productIndex > groceries.length - 1) {
-  //     setProductIndex(groceries.length - 1);
-  //   }
-  // },[productIndex])
+  //   sessionStorage.setItem("groceries", JSON.stringify(groceries));
+  // }, [groceries]);
+
+  useEffect(() => {
+    async function renderSearchResults() {
+      if (searchValue) {
+        const response = await axios.get("/dummy-data/groceries.json");
+
+        const results = response.data.filter(item => {
+          return Object.values(item).some(value => value.toString().toLowerCase().includes(searchValue.toLowerCase()));
+        });
+
+        setGroceries(results);
+      } else if (searchValue === "") {
+        fetchGroceries();
+      }
+    }
+
+    renderSearchResults();
+  }, [searchValue])
 
   return (
-    <div>
-      <h1>Groceries</h1>
-      <div>
-        <button onClick={() => { setProductIndex(prev => prev - 1) }}>-</button>
-        <GroceryList items={groceries.slice(productIndex, productIndex + 3)} />
-        <button onClick={() => { setProductIndex(prev => prev + 1) }}>+</button>
-      </div>
+    <div className={styles.background}>
+      <h1 ref={resultsTextRef} className={styles.text}>Results for "{searchValue}"</h1>
+        <div>
+          <GroceryList items={groceries} />
+        </div>
     </div>
   );
 }
