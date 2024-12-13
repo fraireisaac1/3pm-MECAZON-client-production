@@ -34,7 +34,13 @@ export default function Groceries({searchValue}) {
   },[productIndex])
 
   useEffect(() => {
-    Object.keys
+    if (searchValue) {
+      const results = [...groceries].filter(item => {
+          return Object.values(item).some(value => value.toString().toLowerCase().includes(searchValue.toLowerCase()));
+      });
+
+      setGroceries(results);
+    }
   }, [searchValue])
 
   return (
