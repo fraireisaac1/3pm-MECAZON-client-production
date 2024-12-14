@@ -16,6 +16,9 @@ export default function Signup() {
                 <label className={styles.Label} htmlFor="password">Password:</label> <br />
                 <input className={styles.Input} type="password" id="password" name="password" pattern="" required /> <br /> <br />
 
+                <label className={styles.Label} htmlFor="confirmPassword">Confirm Password:</label> <br />
+                <input className={styles.Input} type="text" id="confirmPassword" name="confirmPassword" pattern="" required /> <br/> <br/>
+
                 <button type="submit">Sign Up</button>
 
                 <p className={styles.LoginText}>Existing account?</p>

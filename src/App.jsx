@@ -30,7 +30,7 @@ export default function App() {
               <Route path="/shopping-cart" element={<ShoppingCart />} />
             </Routes>
           </div>
-          {/* <Modal /> */}
+          <Modal />
         <Footer />
       </Router>
     </>
