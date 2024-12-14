@@ -2,16 +2,22 @@ import styles from "../styles/Modal.module.css";
 import { useState, useEffect, useRef } from "react";
 
 export default function Modal({ data, setModalData }) {
-    // const [isModalOpen, setModalStatus] = useState(false);
+    const [isModalOpen, setModalStatus] = useState(false);
     const modalRef = useRef(null);
 
     function closeModal() {
         modalRef.current.close();
+
+        setModalStatus(false);
+        setModalData(null);
     }
 
     useEffect(() => {
         console.log(data);
-        if (!modalRef.current.open) {
+
+        setModalStatus(true);
+
+        if (isModalOpen) {
             modalRef.current.showModal();
         }
     }, [data]);
