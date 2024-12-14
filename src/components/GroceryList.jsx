@@ -2,17 +2,14 @@ import styles from "../styles/GroceryList.module.css";
 import { useState, useEffect } from "react";
 
 export default function GroceryList({ items }) {
-  const [purchased, setPurchased] = useState(JSON.parse(sessionStorage.getItem("purchased")) || []);
   const [selectedItem, setSelectedItem] = useState(null);
 
   useEffect(() => {
-    setPurchased();
-  }, []);
-
-  useEffect(() => {
-    console.log(purchased, selectedItem);
     if (selectedItem != null) {
-      sessionStorage.setItem("purchased", JSON.stringify([...purchased, selectedItem]));
+      localStorage.setItem("cart", JSON.stringify(
+        [...JSON.parse(localStorage.getItem("cart")) || [],
+        selectedItem]
+      ));
     }
   }, [selectedItem]);
 
@@ -27,11 +24,8 @@ export default function GroceryList({ items }) {
           <div className={styles.description}>
             <h1 className={styles.text}>${i.price}</h1>
             <h2 className={styles.text}>{i.name}</h2>
-            <button className={styles.btn} onClick={()=>{alert(i)}}>Add to Cart</button>
+            <button className={styles.btn} onClick={() => setSelectedItem(i)}>Add to Cart</button>
           </div>
-          <button onClick={() => setSelectedItem(i)} k={i.id}>
-            Buy!
-          </button>
         </div>
       ))}
     </div>
