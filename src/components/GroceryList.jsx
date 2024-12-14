@@ -1,6 +1,18 @@
 import styles from "../styles/GroceryList.module.css";
+import { useState, useEffect } from "react";
 
 export default function GroceryList({ items, setModalData }) {
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  useEffect(() => {
+    if (selectedItem != null) {
+      localStorage.setItem("cart", JSON.stringify(
+        [...JSON.parse(localStorage.getItem("cart")) || [],
+        selectedItem]
+      ));
+    }
+  }, [selectedItem]);
+
   return (
     <div className={styles.list}>
       {items.map(i => (
@@ -9,7 +21,7 @@ export default function GroceryList({ items, setModalData }) {
           <div className={styles.description}>
             <h1 className={styles.text}>${i.price}</h1>
             <h2 className={styles.text}>{i.name}</h2>
-            <button className={styles.btn} onClick={()=>{alert(i)}}>Add to Cart</button>
+            <button className={styles.btn} onClick={() => setSelectedItem(i)}>Add to Cart</button>
           </div>
         </div>
       ))}

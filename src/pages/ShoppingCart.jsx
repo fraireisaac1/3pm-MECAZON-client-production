@@ -1,30 +1,25 @@
 import { useState, useEffect, useRef } from "react";
-import styles from "../styles/Groceries.module.css";
 import GroceryList from "../components/GroceryList";
+import styles from "../styles/Groceries.module.css";
 import axios from "axios";
 
-export default function Groceries({searchValue, setModalData}) {
-  const [groceries, setGroceries] = useState([]);
+export default function ShoppingCart({ searchValue }) {
+  const [purchased, setPurchased] = useState([]);
   const resultsTextRef = useRef(null);
 
-  async function fetchGroceries() {
+  async function fetchPurchased() {
     try {
-      const response = await axios.get("/dummy-data/groceries.json");
-      // console.log(response.data);
-      setGroceries(response.data);
+      const response = JSON.parse(sessionStorage.getItem("purchased"));
+      console.log("response", response);
+      setPurchased(response);
     } catch (err) {
-      console.error("something went wrong fetching groceries", err);
+      console.error("something went wrong fetching the purchased items", err);
     }
   }
 
   useEffect(() => {
-    fetchGroceries();
+    fetchPurchased();
   }, []);
-
-  useEffect(() => {
-    // console.log("groceries", groceries);
-    sessionStorage.setItem("groceries", JSON.stringify(groceries));
-  }, [groceries]);
 
   useEffect(() => {
     async function renderSearchResults() {
@@ -47,11 +42,16 @@ export default function Groceries({searchValue, setModalData}) {
   }, [searchValue]);
 
   return (
-    <div className={styles.background}>
-      <h1 ref={resultsTextRef} className={styles.text}>Results for "{searchValue}"</h1>
+    <>
+      <h1>Shopping Cart</h1>
+      <div className={styles.background}>
+        <h1 ref={resultsTextRef} className={styles.text}>
+          Results for "{searchValue}"
+        </h1>
         <div>
-          <GroceryList setModalData={setModalData} items={groceries} />
+          <GroceryList items={purchased} />
         </div>
-    </div>
+      </div>
+    </>
   );
 }
