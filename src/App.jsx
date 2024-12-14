@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup"
 import Groceries from "./pages/Groceries";
+import ShoppingCart from "./pages/ShoppingCart";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import "./App.css";
@@ -26,6 +27,7 @@ export default function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Signup />} />
               <Route path="/groceries" element={<Groceries searchValue={searchValue} setSearchValue={setSearchValue} />} />
+              <Route path="/shopping-cart" element={<ShoppingCart />} />
             </Routes>
           </div>
           {/* <Modal /> */}
