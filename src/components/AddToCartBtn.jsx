@@ -8,6 +8,8 @@ export default function AddToCartBtn() {
         [...JSON.parse(localStorage.getItem("cart")) || [],
         Item]
         ));
+
+        setItem(null);
     }
     }, [Item]);
     return setItem;
