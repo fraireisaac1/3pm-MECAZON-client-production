@@ -21,7 +21,8 @@
 
 .Logo {
     width: 5rem;
-    
+    margin-right: 0.5rem;
+    border-radius: 0.3rem;
 }
 
 .Input {
@@ -40,4 +41,12 @@
 
 .Label {
     font-size: 1.5rem;
+}
+
+.RegisterText {
+    margin-top: 2.5rem;
+}
+
+.LoginText {
+    margin-top: 2.5rem;
 }
