@@ -16,7 +16,7 @@ import Modal from "./components/Modal";
 export default function App() {
   // Global state for search bar functionality
   const [searchValue, setSearchValue] = useState("");
-  const [modalData, setModalData] = useState(null);
+  const [modalData, setModalData] = useState({});
 
   return (
     <>
