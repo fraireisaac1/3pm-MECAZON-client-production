@@ -41,7 +41,7 @@ export default function Groceries({searchValue, setModalData}) {
     }
 
     renderSearchResults();
-  }, [searchValue])
+  }, [searchValue]);
 
   return (
     <div className={styles.background}>
