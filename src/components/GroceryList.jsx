@@ -10,6 +10,8 @@ export default function GroceryList({ items, setModalData }) {
         [...JSON.parse(localStorage.getItem("cart")) || [],
         selectedItem]
       ));
+
+      setSelectedItem(null);
     }
   }, [selectedItem]);
 
