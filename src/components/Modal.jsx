@@ -41,7 +41,7 @@ export default function Modal({ data, setModalData }) {
     }, [data]);
 
     return (
-      <dialog ref={modalRef} className={styles.container}>
+      <dialog ref={modalRef} onKeyDown={(e) => {e.key === "Escape" ? closeModal() : null}} className={styles.container}>
         <div className={styles.modalContent}>
           <div className={styles.row}>
             <div className={styles.imgDisplay}>
