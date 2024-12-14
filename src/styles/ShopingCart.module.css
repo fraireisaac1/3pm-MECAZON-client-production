@@ -6,6 +6,7 @@
 }
 
 .row {
+    transition: all 1s ease-in-out;
     display: flex;
     flex-direction: row;
     justify-content: space-around;

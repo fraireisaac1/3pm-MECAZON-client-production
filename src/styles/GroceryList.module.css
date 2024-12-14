@@ -42,3 +42,7 @@
   transition: all 0.25s ease-in-out;
   background-color: #508aa5;
 }
+
+.Image {
+  cursor: pointer;
+}

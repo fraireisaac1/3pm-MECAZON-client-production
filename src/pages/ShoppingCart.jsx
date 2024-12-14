@@ -16,15 +16,16 @@ export default function ShoppingCart() {
       <div className={styles.container}>
         <div className={styles.row}>
           <div className={styles.items}>
-            {cart.map( i => (
+            {(cart||[{name: "Your Shopping Cart is Empty"}])?.map( i => (
               <div className={styles.item} key={i.id}>
                 <img
                   className={styles.Image}
                   src={"https://picsum.photos/seed/" + i.name + "/200/200.jpg"}
                   alt={i.name}
+                  draggable="false"
                 />
                 <h1 className={styles.text}>{i.name}</h1>
-                <h1 className={styles.text}>${i.price}</h1>
+                <h1 className={styles.text}>{i.price?"$":''}{i?.price}</h1>
               </div>
             ))}
           </div>

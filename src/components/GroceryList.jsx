@@ -1,29 +1,17 @@
 import styles from "../styles/GroceryList.module.css";
-import { useState, useEffect } from "react";
+import save from "../components/AddToCartBtn";
 
 export default function GroceryList({ items, setModalData }) {
-  const [selectedItem, setSelectedItem] = useState(null);
-
-  useEffect(() => {
-    if (selectedItem != null) {
-      localStorage.setItem("cart", JSON.stringify(
-        [...JSON.parse(localStorage.getItem("cart")) || [],
-        selectedItem]
-      ));
-
-      setSelectedItem(null);
-    }
-  }, [selectedItem]);
 
   return (
     <div className={styles.list}>
       {items.map(i => (
         <div key={i.id} className={styles.item}>
-          <img onClick={() => {setModalData(i)}} src={"https://picsum.photos/seed/"+i.name+"/200/200.jpg"} alt={i.name} />
+          <img className={styles.Image} onClick={() => {setModalData(i)}} src={"https://picsum.photos/seed/"+i.name+"/200/200.jpg"} alt={i.name} draggable="false"/>
           <div className={styles.description}>
             <h1 className={styles.text}>${i.price}</h1>
             <h2 className={styles.text}>{i.name}</h2>
-            <button className={styles.btn} onClick={() => setSelectedItem(i)}>Add to Cart</button>
+            <button className={styles.btn} onClick={() => save(i)}>Add to Cart</button>
           </div>
         </div>
       ))}
