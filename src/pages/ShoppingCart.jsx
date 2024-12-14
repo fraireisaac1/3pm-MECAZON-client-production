@@ -1,55 +1,36 @@
-import { useState, useEffect, useRef } from "react";
-import GroceryList from "../components/GroceryList";
-import styles from "../styles/Groceries.module.css";
-import axios from "axios";
+import { useState, useEffect } from "react";
+import styles from "../styles/ShopingCart.module.css";
+// import axios from "axios";
 
-export default function ShoppingCart({ searchValue }) {
-  const [purchased, setPurchased] = useState([]);
-  const resultsTextRef = useRef(null);
-
-  async function fetchPurchased() {
-    try {
-      const response = JSON.parse(sessionStorage.getItem("purchased"));
-      console.log("response", response);
-      setPurchased(response);
-    } catch (err) {
-      console.error("something went wrong fetching the purchased items", err);
-    }
-  }
+export default function ShoppingCart() {
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
-    fetchPurchased();
+    const response = JSON.parse(localStorage.getItem("cart"));
+    setCart(response);
   }, []);
-
-  useEffect(() => {
-    async function renderSearchResults() {
-      if (searchValue) {
-        const response = await axios.get("/dummy-data/groceries.json");
-
-        const results = response.data.filter((item) => {
-          return Object.values(item).some((value) =>
-            value.toString().toLowerCase().includes(searchValue.toLowerCase())
-          );
-        });
-
-        setGroceries(results);
-      } else if (searchValue === "") {
-        fetchGroceries();
-      }
-    }
-
-    renderSearchResults();
-  }, [searchValue]);
 
   return (
     <>
       <h1>Shopping Cart</h1>
-      <div className={styles.background}>
-        <h1 ref={resultsTextRef} className={styles.text}>
-          Results for "{searchValue}"
-        </h1>
-        <div>
-          <GroceryList items={purchased} />
+      <div className={styles.container}>
+        <div className={styles.row}>
+          <div className={styles.items}>
+            {cart.map( i => (
+              <div className={styles.item} key={i.id}>
+                <img
+                  className={styles.Image}
+                  src={"https://picsum.photos/seed/" + i.name + "/200/200.jpg"}
+                  alt={i.name}
+                />
+                <h1 className={styles.text}>{i.name}</h1>
+                <h1 className={styles.text}>${i.price}</h1>
+              </div>
+            ))}
+          </div>
+          <div className={styles.items}>
+            <h1>Checkout</h1>
+          </div>
         </div>
       </div>
     </>
