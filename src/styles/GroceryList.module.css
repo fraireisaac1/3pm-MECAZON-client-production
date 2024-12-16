@@ -30,7 +30,7 @@
 }
 
 .btn {
-  transition: all 1s ease-in-out;
+  /* transition: all 1s ease-in-out; */
   border: none;
   cursor: pointer;
   background-color: #F78E11;
@@ -39,7 +39,7 @@
 }
 
 .btn:active {
-  transition: all 0.25s ease-in-out;
+  transition: all 0.05s ease-in-out;
   background-color: #508aa5;
 }
 

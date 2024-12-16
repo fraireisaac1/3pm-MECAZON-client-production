@@ -47,14 +47,16 @@ export default function ShoppingCart() {
                 </div>
               )}
             )}
-            <div className={styles.listing}>
-              <h1 className={styles.text}>Tax: </h1>
-              <h1 className={styles.text}>{tax*100}%</h1>
-            </div>
-            <div className={styles.listing}>
-              <h1 className={styles.text}>Total: </h1>
-              <h1 className={styles.text}>{(total==0)?"Free":`$${total}`}</h1>
-            </div>
+            {cart?(<>
+              <div className={styles.listing}>
+                <h1 className={styles.text}>Tax: </h1>
+                <h1 className={styles.text}>{tax*100}%</h1>
+              </div>
+              <div className={styles.listing}>
+                <h1 className={styles.text}>Total: </h1>
+                <h1 className={styles.text}>{(total==0)?"Free":`$${total}`}</h1>
+              </div>
+            </>):(<></>)}
           </div>
         </div>
       </div>
