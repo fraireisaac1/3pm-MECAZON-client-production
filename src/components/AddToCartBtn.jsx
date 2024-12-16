@@ -3,5 +3,7 @@ export default function SaveItem(Item) {
         return localStorage.setItem("cart", JSON.stringify(
             [...JSON.parse(localStorage.getItem("cart")) || [], Item]
         ));
+
+        setItem(null);
     }
 }
