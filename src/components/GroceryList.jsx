@@ -1,8 +1,7 @@
 import styles from "../styles/GroceryList.module.css";
-import save from "../components/AddToCartBtn";
+import SaveItem from "../components/AddToCartBtn";
 
 export default function GroceryList({ items, setModalData }) {
-
   return (
     <div className={styles.list}>
       {items.map(i => (
@@ -11,7 +10,7 @@ export default function GroceryList({ items, setModalData }) {
           <div className={styles.description}>
             <h1 className={styles.text}>${i.price}</h1>
             <h2 className={styles.text}>{i.name}</h2>
-            <button className={styles.btn} onClick={() => save(i)}>Add to Cart</button>
+            <button className={styles.btn} onClick={() => SaveItem(i)}>Add to Cart</button>
           </div>
         </div>
       ))}

@@ -58,3 +58,10 @@
     font-size: 1vw;
     /* flex-shrink: 1; */
 }
+
+.listing {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+}
