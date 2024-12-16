@@ -3,7 +3,7 @@ import styles from "../styles/Home.module.css";
 import Carousel from "../components/Carousel";
 import axios from "axios";
 
-export default function Home() {
+export default function Home({setModalData}) {
   // const api = axios.create({
   //   baseurl: import.meta.env.VITE_API_URI_DEV
   // });
@@ -31,7 +31,7 @@ export default function Home() {
   }, []);
 
   return <>
-    <Carousel count={Math.ceil(self.innerWidth/200)<10?Math.ceil(self.innerWidth/200):10} data={groceries}/>
+    <Carousel count={Math.ceil(self.innerWidth/200)<10?Math.ceil(self.innerWidth/200):10} setModalData={setModalData} data={groceries}/>
     <div className={styles.banner}>
       <img className={styles.image} src="https://media-public.canva.com/ADwTE/MAGHDfADwTE/1/s.png" alt="Black Man" draggable="false"/>
       <div className={styles.column}>
