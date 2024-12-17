@@ -32,8 +32,6 @@ export default function Modal({ data, setModalData }) {
     }
 
     useEffect(() => {
-        console.log(data);
-
         setModalStatus(true);
 
         if (isModalOpen) {
