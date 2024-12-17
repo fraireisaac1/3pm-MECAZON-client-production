@@ -1,19 +1,52 @@
 // basic skeleton for login
 import styles from "../styles/UserForms.module.css";
 import { Link } from "react-router-dom";
-import axios from 'axios'
-
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from 'react'
+import axios from "axios";
 export default function Signup() {
 
-    function pushSessionData() {
 
-      const username = document.getElementById('username').value;
-      const email = document.getElementById('email').value
-      const password = document.getElementById('password').value
-      localStorage.setItem('username', username);
-      localStorage.setItem('email', email);
-      localStorage.setItem("password", password);
-  }
+  const navigate = useNavigate()
+  async function fetchUserData(userData) {
+    try {
+      const data = await axios.get("/dummy-data/users.json");
+      const users = JSON.stringify(data);
+      localStorage.setItem('data', users)
+
+
+      users.push(userData);
+    } catch (err) {
+      console.error('There was an error: ', err)
+    }
+  };
+      const pushSessionData = () => {
+        try {
+          const username = document.getElementById('username').value;
+          const email = document.getElementById('email').value
+          const password = document.getElementById('password').value
+          const matchPass = document.getElementById('confirmPassword').value
+
+          const user = {
+            username: username,
+            email: email,
+            password: password,
+          };
+          if (password !== matchPass) {
+            alert('Passwords do not match')
+          } else {
+            localStorage.setItem('username', username);
+            localStorage.setItem('email', email);
+            localStorage.setItem("password", password);
+            fetchUserData(user)
+            navigate('/login')
+          }
+        } catch (err) {
+          console.error('There was in error pushing data: ', err)
+        }
+
+      }
+
 
     return (
       <div className={styles.Form}>
@@ -75,7 +108,7 @@ export default function Signup() {
             required
           />{" "}
           <br /> <br />
-          <button  onClick={pushSessionData} type="submit">
+          <button onClick={pushSessionData} type="submit">
             Sign Up
           </button>
           <p className={styles.LoginText}>Existing account?</p>
