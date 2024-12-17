@@ -92,7 +92,7 @@ export default function ShoppingCart() {
             ) : (
               <></>
             )}
-            <button>Checkout</button>
+            <button onClick={() => { localStorage.cart = '[]'; setCart([]); }}>Checkout</button>
           </div>
         </div>
       </div>
