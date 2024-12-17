@@ -44,7 +44,7 @@ export default function Modal({ data, setModalData }) {
         <div className={styles.modalContent}>
           <div className={styles.row}>
             <div className={styles.imgDisplay}>
-              <img className={styles.productImg} src={"https://picsum.photos/seed/"+data.name+"/200/200.jpg"} />
+              <img className={styles.productImg} src={new URL(data.product_img, import.meta.url).href} alt={data.item} />
             </div>
 
             <div className={styles.itemInformation}>

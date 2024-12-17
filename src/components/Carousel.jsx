@@ -28,7 +28,7 @@ export default function Carousel({ count, data, setModalData }) {
             {data.slice(index, index + count).map(i => (
               <div className={styles.item} key={i.id}>
                 {/* src="https://avatars.githubusercontent.com/u/131179727?s=200&v=4" */}
-                <img className={styles.Image} onClick={() => {setModalData(i)}} src={`https://drive.google.com/uc?export=view&id=${/[A-z0-9]{11,}/g.exec(i.product_img)}`} alt="" />
+                <img className={styles.Image} onClick={() => {setModalData(i)}} src={new URL(i.product_img, import.meta.url).href} alt={i.item} />
                 <div className={styles.subitem}>
                   <h1 className={styles.text}>{i.item}</h1>
                   <h1 className={styles.price}>${i.price_in_usd}</h1>
