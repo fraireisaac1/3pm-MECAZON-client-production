@@ -24,7 +24,7 @@ export default function ShoppingCart() {
       <div className={styles.container}>
         <div className={styles.row}>
           <div className={styles.items}>
-            {(cart.length !== 0 ? cart : [{ name: "Your Cart is empty" }]).map(
+            {((cart?cart.length:0) !== 0 ? cart : [{ name: "Your Cart is empty" }]).map(
               (i) => (
                 <div className={styles.item} key={Math.random()}>
                   <img
@@ -92,7 +92,7 @@ export default function ShoppingCart() {
             ) : (
               <></>
             )}
-            <button>Checkout</button>
+            <button onClick={() => { localStorage.cart = '[]'; setCart([]); }}>Checkout</button>
           </div>
         </div>
       </div>
