@@ -23,7 +23,7 @@ export default function Groceries({searchValue, setModalData}) {
     if (searchValue) {
       const response = await axios.get("/dummy-data/groceries.json");
 
-      const results = response.data.filter((item) => item.name.toLowerCase().includes(searchValue.toLowerCase()))
+      const results = response.data.filter((item) => item.name.toLowerCase().includes(searchValue.toLowerCase()));
 
       if (categoryFilterState !== "") {
         results.filter((i) => i.category === categoryFilterState);
