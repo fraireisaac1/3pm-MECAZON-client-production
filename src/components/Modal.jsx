@@ -81,7 +81,7 @@ export default function Modal({ data, setModalData }) {
 
             <div className={styles.suggestedProducts}>
               <h2>Suggested Products</h2>
-              <Carousel count={3} data={products} />
+              <Carousel setModalData={setModalData} count={3} data={products} />
             </div>
           </div>
 
