@@ -54,7 +54,7 @@ export default function Modal({ data, setModalData }) {
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus eius, laboriosam aperiam quis quibusdam facilis maiores quam fugit perspiciatis modi totam tempore soluta non quidem corrupti aut exercitationem, sapiente nisi.</p>
 
               <div className={styles.buttonSection}>
-                <button onClick={() => {addToCartFunc(data)}} className={styles.addCartButton}>Add to Cart</button>
+                <button onClick={() => {for(let i = 0; i < quantity; i++) {addToCartFunc(data)}}} className={styles.addCartButton}>Add to Cart</button>
                 <div className={styles.quantitySelector}>
                   <div>
                     <button onClick={() => {quantity > 0 ? setQuantity(prev => prev -= 1) : null}}>-</button>
