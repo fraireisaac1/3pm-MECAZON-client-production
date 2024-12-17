@@ -43,10 +43,8 @@ export default function Modal({ data, setModalData }) {
     console.log(data);
   }
 
-  useEffect(() => {
-    console.log(data);
-
-    setModalStatus(true);
+    useEffect(() => {
+        setModalStatus(true);
 
     if (isModalOpen) {
       modalRef.current.showModal();
@@ -82,7 +80,7 @@ export default function Modal({ data, setModalData }) {
             </p>
 
               <div className={styles.buttonSection}>
-                <button onClick={() => {addToCartFunc(data)}} className={styles.addCartButton}>Add to Cart</button>
+                <button onClick={() => {for(let i = 0; i < quantity; i++) {addToCartFunc(data)}}} className={styles.addCartButton}>Add to Cart</button>
                 <div className={styles.quantitySelector}>
                   <div>
                     <button onClick={() => {quantity > 0 ? setQuantity(prev => prev -= 1) : null}}>-</button>
@@ -121,11 +119,11 @@ export default function Modal({ data, setModalData }) {
             <h1>${data.price}</h1>
           </div>
 
-          <div className={styles.suggestedProducts}>
-            <h2>Suggested Products</h2>
-            <Carousel count={3} data={products} />
+            <div className={styles.suggestedProducts}>
+              <h2>Suggested Products</h2>
+              <Carousel setModalData={setModalData} count={3} data={products} />
+            </div>
           </div>
-        </div>
 
         <button onClick={closeModal}>Close</button>
       </div>
