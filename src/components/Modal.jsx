@@ -7,7 +7,8 @@ import axios from "axios"
 export default function Modal({ data, setModalData }) {
     const [products, setProducts] = useState([]);
     const [isModalOpen, setModalStatus] = useState(false);
-    const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(0);
+  const [colorFilter, setColor] = useState("");
     const modalRef = useRef(null);
 
     async function fetchProducts() {
@@ -39,6 +40,10 @@ export default function Modal({ data, setModalData }) {
         }
     }, [data]);
 
+  useEffect(() => {
+    console.log(colorFilter)
+  }, [colorFilter])
+
     return (
       <dialog ref={modalRef} onKeyDown={(e) => {e.key === "Escape" ? closeModal() : null}} className={styles.container}>
         <div className={styles.modalContent}>
@@ -54,6 +59,7 @@ export default function Modal({ data, setModalData }) {
               <p>${data.details}</p>
 
               <div className={styles.buttonSection}>
+                {data.colorArr ? (<select onChange={(e) => {setColor(e.target.value)}}><option value="">--Select a color--</option>{data.colorArr.map(color => (<option value={color}>{color}</option>))}</select>) : null}
                 <button onClick={() => {for(let i = 0; i < quantity; i++) {addToCartFunc(data)}}} className={styles.addCartButton}>Add to Cart</button>
                 <div className={styles.quantitySelector}>
                   <div>
