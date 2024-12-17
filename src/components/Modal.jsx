@@ -12,7 +12,7 @@ export default function Modal({ data, setModalData }) {
 
     async function fetchProducts() {
       try {
-        const response = await axios.get("/dummy-data/groceries.json");
+        const response = await axios.get("/dummy-data/products.json");
         // console.log(response.data);
         setProducts(response.data);
       } catch (err) {
@@ -48,10 +48,10 @@ export default function Modal({ data, setModalData }) {
             </div>
 
             <div className={styles.itemInformation}>
-              <h1>{data.name}</h1>
+              <h1>{data.item}</h1>
               <h2>About this item:</h2>
 
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus eius, laboriosam aperiam quis quibusdam facilis maiores quam fugit perspiciatis modi totam tempore soluta non quidem corrupti aut exercitationem, sapiente nisi.</p>
+              <p>${data.details}</p>
 
               <div className={styles.buttonSection}>
                 <button onClick={() => {for(let i = 0; i < quantity; i++) {addToCartFunc(data)}}} className={styles.addCartButton}>Add to Cart</button>
@@ -76,12 +76,12 @@ export default function Modal({ data, setModalData }) {
             <div className={styles.otherInfo}>
               <h1>⭐⭐⭐⭐⭐</h1>
 
-              <h1>${data.price}</h1>
+              <h1>${data.price_in_usd}</h1>
             </div>
 
             <div className={styles.suggestedProducts}>
               <h2>Suggested Products</h2>
-              <Carousel setModalData={setModalData} count={3} data={products} />
+              <Carousel setModalData={setModalData} count={3} data={products.filter(i => i.category === data.category && i.item !== data.item)} />
             </div>
           </div>
 

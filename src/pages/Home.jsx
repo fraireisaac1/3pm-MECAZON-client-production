@@ -21,7 +21,7 @@ export default function Home({setModalData}) {
   useEffect(() => {
     async function fetchGroceries() {
       try {
-        const response = await axios.get("/dummy-data/groceries.json");
+        const response = await axios.get("/dummy-data/products.json");
         setGroceries(response.data);
       } catch (err) {
         console.error("something went wrong fetching groceries", err);
