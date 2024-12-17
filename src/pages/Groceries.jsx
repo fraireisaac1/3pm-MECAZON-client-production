@@ -22,14 +22,16 @@ export default function Groceries({searchValue, setModalData}) {
   async function renderSearchResults() {
     if (searchValue) {
       const response = await axios.get("/dummy-data/groceries.json");
-
-      const results = response.data.filter((item) => item.name.toLowerCase().includes(searchValue.toLowerCase()));
+      let results = response.data;
 
       if (categoryFilterState !== "") {
-        results.filter((i) => i.category === categoryFilterState);
+        results = results.filter((i) => i.category === categoryFilterState);
       }
 
-      setGroceries(results);
+      const searchResults = results.filter((item) => item.name.toLowerCase().includes(searchValue.toLowerCase()))
+
+
+      setGroceries(searchResults);
     } else if (searchValue === "") {
       if (categoryFilterState !== "") {
         const response = await axios.get("/dummy-data/groceries.json");
@@ -51,22 +53,17 @@ export default function Groceries({searchValue, setModalData}) {
   // }, [groceries]);
 
   useEffect(() => {
+    console.log(categoryFilterState);
     renderSearchResults();
   }, [searchValue]);
 
   useEffect(() => {
     async function renderFilteredResults() {
       const response = await axios.get("/dummy-data/groceries.json");
-      let searchResults;
+      let searchResults = response.data;
 
       if (searchValue) {
-        searchResults = response.data.filter((item) => {
-          return Object.values(item).some((value) =>
-            value.toString().toLowerCase().includes(searchValue.toLowerCase())
-          );
-        });
-      } else {
-        searchResults = response.data;
+        searchResults = searchResults.filter((item) => item.name.toLowerCase().includes(searchValue.toLowerCase()))
       }
 
       if (categoryFilterState !== "") {
