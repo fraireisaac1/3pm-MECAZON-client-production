@@ -14,7 +14,3 @@
     display: flex;
     align-items: center;
 }
-
-.filtersWrapper > input, h1 {
-    margin-right: 1rem;
-}

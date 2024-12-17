@@ -29,9 +29,7 @@ export default function ShoppingCart() {
                 <div className={styles.item} key={Math.random()}>
                   <img
                     className={styles.Image}
-                    src={
-                      "https://picsum.photos/seed/" + i.name + "/200/200.jpg"
-                    }
+                    src={"https://picsum.photos/seed/" + i.name + "/200/200.jpg"}
                     alt={i.name}
                     draggable="false"
                   />
@@ -51,12 +49,7 @@ export default function ShoppingCart() {
                           localStorage.setItem("cart", JSON.stringify(cart));
                           setCart(cart);
                         }
-                      }}
-                    >
-                      ✖
-                    </button>
-                  ) : (
-                    <></>
+                      }}>✖</button>):(<></>
                   )}
                 </div>
               )
