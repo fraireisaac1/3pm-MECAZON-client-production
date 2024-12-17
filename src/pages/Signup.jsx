@@ -1,17 +1,19 @@
 // basic skeleton for login
 import styles from "../styles/UserForms.module.css";
 import { Link } from "react-router-dom";
+import axios from 'axios'
 
 export default function Signup() {
-    const form = document.getElementById("form");
 
     function pushSessionData() {
 
-        const email = document.getElementById('email').value
-        const password = document.getElementById('password').value
-        localStorage.setItem('email', email)
-        localStorage.setItem("password", password);
-    }
+      const username = document.getElementById('username').value;
+      const email = document.getElementById('email').value
+      const password = document.getElementById('password').value
+      localStorage.setItem('username', username);
+      localStorage.setItem('email', email);
+      localStorage.setItem("password", password);
+  }
 
     return (
       <div className={styles.Form}>
@@ -25,6 +27,18 @@ export default function Signup() {
         </div>
         <h1 className={styles.Header}>Sign Up</h1>
         <form action="" id="form">
+          <label className={styles.Label} htmlFor="username">
+            Username:
+          </label>{" "}
+          <br />
+          <input
+            className={styles.Input}
+            type="input"
+            id="username"
+            name="username"
+            required
+          />{" "}
+          <br /> <br />
           <label className={styles.Label} htmlFor="email">
             Email Address:
           </label>{" "}
@@ -58,11 +72,10 @@ export default function Signup() {
             type="text"
             id="confirmPassword"
             name="confirmPassword"
-            pattern=""
             required
           />{" "}
           <br /> <br />
-          <button onClick={pushSessionData}  type="submit">
+          <button  onClick={pushSessionData} type="submit">
             Sign Up
           </button>
           <p className={styles.LoginText}>Existing account?</p>

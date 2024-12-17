@@ -1,16 +1,27 @@
 // basic skeleton for login
 import styles from "../styles/UserForms.module.css";
 import { Link } from "react-router-dom"
+import axios from 'axios'
 
 export default function Login() {
 
-    function checkSessionData() {
+
+    async function checkSessionData() {
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
         const currentEmail = localStorage.getItem('email')
         const currentPassword = localStorage.getItem('password')
+        try {
+            // const data = await axios.get('/dummy-data/users.json')
+            // const users = JSON.stringify(data)
+            // console.log(data)
+
+        } catch (err) {
+            console.error('problem finding user', err)
+        }
 
         if (email === currentEmail && password === currentPassword) {
+            localStorage.setItem('loggedIn', 'true')
             alert('explode')
         }
     }

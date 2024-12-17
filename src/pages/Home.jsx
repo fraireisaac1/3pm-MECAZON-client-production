@@ -3,7 +3,9 @@ import styles from "../styles/Home.module.css";
 import Carousel from "../components/Carousel";
 import axios from "axios";
 
-export default function Home({setModalData}) {
+export default function Home({ setModalData }) {
+
+  
   // const api = axios.create({
   //   baseurl: import.meta.env.VITE_API_URI_DEV
   // });
