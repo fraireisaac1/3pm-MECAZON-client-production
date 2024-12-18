@@ -85,7 +85,7 @@ export default function ShoppingCart() {
             ) : (
               <></>
             )}
-            <button onClick={() => { localStorage.cart = '[]'; setCart([]); }}>Checkout</button>
+            <button onClick={() => { localStorage.cart = '[]'; setCart([]); alert("Thanks for shopping with us!"); }}>Checkout</button>
           </div>
         </div>
       </div>
