@@ -1,51 +1,11 @@
 // basic skeleton for login
 import styles from "../styles/UserForms.module.css";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from 'react'
+import { Link, useNavigate } from "react-router-dom";
 import baseURL from "../../baseURL";
 
 export default function Signup() {
   const api = baseURL();
-  const navigate = useNavigate()
-  // async function fetchUserData(userData) {
-  //   try {
-  //     const data = await axios.get("/dummy-data/users.json");
-  //     const users = JSON.stringify(data);
-  //     // localStorage.setItem('data', users)
-
-
-  //     users.push(userData);
-  //   } catch (err) {
-  //     console.error('There was an error: ', err)
-  //   }
-  // };
-  //     const pushSessionData = () => {
-  //       try {
-  //         const username = document.getElementById('username').value;
-  //         const email = document.getElementById('email').value
-  //         const password = document.getElementById('password').value
-  //         const matchPass = document.getElementById('confirmPassword').value
-
-  //         const user = {
-  //           username: username,
-  //           email: email,
-  //           password: password,
-  //         };
-  //         if (password !== matchPass) {
-  //           alert('Passwords do not match')
-  //         } else {
-  //           localStorage.setItem('username', username);
-  //           localStorage.setItem('email', email);
-  //           localStorage.setItem("password", password);
-  //           fetchUserData(user)
-  //           navigate('/login')
-  //         }
-  //       } catch (err) {
-  //         console.error('There was in error pushing data: ', err)
-  //       }
-
-  //     }
+  const navigate = useNavigate();
 
   async function signUp(e) {
     e.preventDefault();
@@ -60,7 +20,9 @@ export default function Signup() {
       console.log(new_user);
       try {
         let request = await api.post('/sign-up/3pm-server-MECAZON/users', new_user);
-        console.log(request, new_user);
+        if (request.status = 200) {
+          navigate('/login');
+        }
       } catch (error) {
         alert(error.response.data.error);
       }

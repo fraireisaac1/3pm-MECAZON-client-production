@@ -14,7 +14,7 @@ export default function Login() {
     try {
       let response = await api.get(`/log-in/3pm-server-MECAZON/users/${email}/${password}`);
       form.password.value = "";
-      if (response.status = 200) {
+      if (response.status == 200) {
         localStorage.setItem('currentUser', JSON.stringify(response.data));
         navigate('/');
       }

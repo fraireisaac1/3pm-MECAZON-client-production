@@ -1,16 +1,28 @@
 import { Link } from "react-router-dom";
-import { useRef, useEffect } from 'react'
 import Search from "../components/SearchBar";
 import styles from "../styles/Navbar.module.css";
+import baseURL from "../../baseURL";
+import { useState } from "react";
+
 export default function Navbar({ setSearchValue }) {
-  let route = '/login'
-  let phrase = 'Sign In'
-  function isLoggedIn() {
-    const isLogged = localStorage.getItem("loggedIn");
-    const username = localStorage.getItem('username')
-    if (JSON.parse(isLogged) === true) {
-      phrase = `Hello ${username}`;
-      route = '/shopping-cart'
+  const [route, setRoute] = useState('/login');
+  const [phrase, setPhrase] = useState('Sign In');
+  const api = baseURL();
+  
+  async function isLoggedIn() {
+    const user_id = JSON.parse(localStorage.getItem('currentUser'));
+    if (user_id != null) {
+      try {
+        const response = await api.get(`/retrieve-user/3pm-server-MECAZON/users/${user_id}`);
+        if (response.status == 200) {
+          const username = response.data.contact_info;
+          console.log(username);
+          setPhrase(`Hello ${username}`);
+          setRoute('/shopping-cart');
+        }
+      } catch (error) {
+        console.log(error.response.data.error);
+      }
     }
   }
   isLoggedIn()

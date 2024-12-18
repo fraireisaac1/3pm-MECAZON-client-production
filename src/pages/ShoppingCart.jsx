@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "../styles/ShopingCart.module.css";
-// import axios from "axios";
+import baseURL from "../../baseURL";
 
 export default function ShoppingCart() {
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(0);
   const [tax, setTax] = useState(0.08);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const response = JSON.parse(localStorage.getItem("cart"));
@@ -17,6 +19,26 @@ export default function ShoppingCart() {
     (cart||[])?.map(i=>{total += i.price_in_usd;})
     setTotal(()=>(parseFloat(total)+(parseFloat(total)*tax)).toFixed(2));
   },[cart, tax]);
+
+  async function checkout() {
+    let api = baseURL();
+    let user_id = JSON.parse(localStorage.getItem("currentUser"));
+    console.log(user_id);
+    if (user_id != null) {
+      try {
+        const response = await api.post(`/checkout-order/3pm-server-MECAZON/users/${user_id}`, {order: cart});
+        if (response.status == 200) {
+          localStorage.cart = "[]";
+          setCart([]);
+          console.log(response);
+        }
+      } catch (error) {
+        alert(error.response.data.error);
+      }
+    } else {
+      navigate("/login");
+    }
+  }
 
   return (
     <>
@@ -91,14 +113,7 @@ export default function ShoppingCart() {
             ) : (
               <></>
             )}
-            <button
-              onClick={() => {
-                localStorage.cart = "[]";
-                setCart([]);
-              }}
-            >
-              Checkout
-            </button>
+            <button onClick={() => {checkout()}}>Checkout</button>
           </div>
         </div>
       </div>

@@ -29,15 +29,7 @@ export default function App() {
             <Route path="/admin" element={<Admin />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Signup />} />
-            <Route
-              path="/groceries"
-              element={
-                <Groceries
-                  searchValue={searchValue}
-                  setModalData={setModalData}
-                />
-              }
-            />
+            <Route path="/groceries" element={<Groceries searchValue={searchValue} setModalData={setModalData} />}/>
             <Route path="/shopping-cart" element={<ShoppingCart />} />
           </Routes>
 
