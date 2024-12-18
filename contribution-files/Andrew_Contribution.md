@@ -29,6 +29,7 @@ export default function Login() {
     );
 }
 ```
+![Picture of Andrew's login page](../contribution-images/login.png)
 ## Sign Up Contribution
 # Signup.jsx page
 ```js
@@ -61,5 +62,6 @@ export default function Signup() {
     );
 }
 ```
-## Admin Contribution
-#
+![Picture of Andrew's sign up page](../contribution-images/signup.png)
+## Admin Login Contribution
+Unfortunately, due to merge conflicts and time constraints, I couldn't exactly get the code from Andrew's admin contribution. However, I will say that Andrew did indeed contribute to this segment of the project, and all due credit should go to him for that.
