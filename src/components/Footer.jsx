@@ -1,4 +1,5 @@
 import styles from "../styles/Footer.module.css";
+import { Link } from 'react-router-dom'
 
 export default function Footer() {
     return (
@@ -30,6 +31,8 @@ export default function Footer() {
                         <div className={styles.column}>
                             <h1>Account</h1>
                             <a href="/" className={styles.socials}>Account</a>
+                            <Link className={styles.socials} to="/admin/employees">Admin | Employees</Link>
+                            <Link className={styles.socials} to="/admin/users">Admin | Users</Link>
                         </div>
                     </div>
                     <div className={styles.copyrights}>

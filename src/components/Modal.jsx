@@ -56,9 +56,9 @@ export default function Modal({ data, setModalData }) {
     }, [data]);
 
   useEffect(() => {
-    if (colorFilter !== "") {
+    if (colorFilter !== "" && imgFilterRef.current) {
       imgFilterRef.current.className = `${styles[colorFilter]}`;
-    } else {
+    } else if (colorFilter !== "" && imgFilterRef.current) {
       imgFilterRef.current.className = ``;
     }
   }, [colorFilter])
