@@ -31,9 +31,11 @@ export default function ShoppingCart() {
               <div className={styles.item} key={Math.random()}>
                 <img
                   className={styles.Image}
-                  src={new URL(i.product_img, import.meta.url).href}
+                  src={i.item ? `/products/${i.item.replace(/\s+/g, "")}.jpg` : null}
                   alt={i.item}
                   draggable="false"
+                  width="150"
+                  height="150"
                 />
                 <h1 className={styles.text}>{i.name}</h1>
                 <h1 className={styles.text}>

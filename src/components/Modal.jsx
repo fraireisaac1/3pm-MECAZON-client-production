@@ -63,7 +63,7 @@ export default function Modal({ data, setModalData }) {
         <div className={styles.modalContent}>
           <div className={styles.row}>
             <div className={styles.imgDisplay}>
-              <img className={styles.productImg} src={new URL(data.product_img, import.meta.url).href} alt={data.item} />
+              <img className={styles.productImg} width="150" height="150" src={data.item ? `/products/${data.item.replace(/\s+/g, "")}.jpg` : null} alt={data.item} />
             </div>
 
             <div className={styles.itemInformation}>

@@ -1,11 +1,12 @@
 import GroceryList from "./GroceryList";
 import addToCartFunc from "./AddToCartBtn";
 import styles from "../styles/Carousel.module.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 export default function Carousel({ count, data, setModalData }) {
 
-    const [index, setIndex] = useState(0)
+    const [index, setIndex] = useState(0);
+    // const imgRefs = useRef([null])
     // const [data, setdata] = useState([]);
 
     function incrementIndex(num) {
@@ -19,7 +20,15 @@ export default function Carousel({ count, data, setModalData }) {
       }
   };
 
-  console.log(data);
+  // function setSrc(i) {
+  //   setTimeout(() => {
+  //     const currentImg = imgRefs.current[i.id];
+
+  //     if (currentImg) {
+  //       currentImg.src = `https://drive.google.com/thumbnail?id=${/[A-z\-0-9]{10,}/g.exec(i.product_img)}`;
+  //     }
+  //   }, i.id * 1000);
+  // }
 
     return (
       <div className={styles.row}>
@@ -40,7 +49,7 @@ export default function Carousel({ count, data, setModalData }) {
                 onClick={() => {
                   setModalData(i);
                 }}
-                src={`https://drive.usercontent.google.com/download?id=${/[A-z0-9]{11,}/g.exec(i.product_img)}&export=view&authuser=0`}
+                src={`/products/${i.item.replace(/\s+/g, "")}.jpg`}
                 alt={i.item}
               />
               <div className={styles.subitem}>

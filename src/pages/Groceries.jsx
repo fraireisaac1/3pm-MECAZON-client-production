@@ -8,6 +8,15 @@ export default function Groceries({searchValue, setModalData}) {
   const [categoryFilterState, setCategory] = useState("");
   const [categories, setCategories] = useState([]);
   const resultsTextRef = useRef(null);
+  const imgRefs = useRef([]);
+
+  function setSrc(i) {
+    setTimeout(() => {
+      console.log("timeout")
+      
+      imgRefs.current[i.id].src = `https://drive.google.com/thumbnail?id=${/[A-z0-9]{8,}/g.exec(i.product_img)}`;
+    }, i.id * 10);
+  }
 
   async function fetchGroceries() {
     try {
