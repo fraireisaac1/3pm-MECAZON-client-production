@@ -8,14 +8,14 @@ export default function Navbar({ setSearchValue }) {
   const [route, setRoute] = useState('/login');
   const [phrase, setPhrase] = useState('Sign In');
   const api = baseURL();
-  
+
   async function isLoggedIn() {
     const user_id = JSON.parse(localStorage.getItem('currentUser'));
     if (user_id != null) {
       try {
         const response = await api.get(`/retrieve-user/3pm-server-MECAZON/users/${user_id}`);
         if (response.status == 200) {
-          const username = response.data.contact_info;
+          const username = response.data.contact_info.username;
           console.log(username);
           setPhrase(`Hello ${username}`);
           setRoute('/shopping-cart');
