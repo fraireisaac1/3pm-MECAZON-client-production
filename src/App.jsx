@@ -2,6 +2,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import Home from "./pages/Home";
+import Admin from './pages/Admin';
 import Login from "./pages/Login";
 import Signup from "./pages/Signup"
 import Groceries from "./pages/Groceries";
@@ -22,17 +23,26 @@ export default function App() {
     <>
       <Router>
         <Navbar setSearchValue={setSearchValue} />
-          <div className="main">
-            <Routes>
-              <Route path="/" element={<Home setModalData={setModalData} />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Signup />} />
-              <Route path="/groceries" element={<Groceries searchValue={searchValue} setModalData={setModalData} />} />
-              <Route path="/shopping-cart" element={<ShoppingCart />} />
-            </Routes>
+        <div className="main">
+          <Routes>
+            <Route path="/" element={<Home setModalData={setModalData} />} />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Signup />} />
+            <Route
+              path="/groceries"
+              element={
+                <Groceries
+                  searchValue={searchValue}
+                  setModalData={setModalData}
+                />
+              }
+            />
+            <Route path="/shopping-cart" element={<ShoppingCart />} />
+          </Routes>
 
-            <Modal data={modalData} setModalData={setModalData} />
-          </div>
+          <Modal data={modalData} setModalData={setModalData} />
+        </div>
         <Footer />
       </Router>
     </>
