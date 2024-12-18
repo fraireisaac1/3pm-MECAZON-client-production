@@ -1,10 +1,96 @@
 .nav {
-  background-color: #333;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #F78E11;
   padding: 1rem;
 }
 
+.col {
+  display: flex;
+  justify-content: center;
+  width: 33%;
+}
+
 .nav a {
-  color: #fff;
-  margin-right: 1rem;
+  color: black;
   text-decoration: none;
+}
+
+.brand {
+  justify-content: start;
+}
+
+.userButtons {
+  justify-content: end;
+  display: flex;
+  align-items: center; /* Ensure items align vertically */
+  gap: 1rem; /* Add spacing between icons */
+}
+
+.logoWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.logoWrapper p {
+  color: white !important;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.logo {
+  margin-right: 0.5rem;
+  border-radius: 0.3rem;
+}
+
+.loginLink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1rem;
+}
+
+.loginLink p {
+  color: #0e3249;
+  margin-right: 0.3rem;
+}
+
+.cartLink {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Ensure vertical alignment */
+}
+
+.cartLink img,
+.loginLink img {
+  vertical-align: middle; /* Align images in the same line */
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .col {
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .userButtons {
+    justify-content: center; /* Center on mobile */
+  }
+
+  .loginLink {
+    margin-right: 0;
+  }
+
+  .cartLink img {
+    width: 40px; /* Adjust cart icon size */
+    height: 40px;
+  }
 }
