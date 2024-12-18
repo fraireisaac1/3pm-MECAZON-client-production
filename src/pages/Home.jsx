@@ -3,27 +3,30 @@ import styles from "../styles/Home.module.css";
 import Carousel from "../components/Carousel";
 import axios from "axios";
 
-export default function Home({ setModalData }) {
+export default function Home({setModalData}) {
+  const api = axios.create({
+    // baseurl =
+    // run a code space on https://github.com/WestMecCoding/3pm-MECAZON-server-production
+    // use TeamC-Integration branch
+    // command: npm run start:prod
+    // go to ports tab in terminal and make the 3000 port public under the visibility column
+    baseURL: "https://stunning-umbrella-7v95w67w6qg6cr7v6-3000.app.github.dev/",
+  });
 
-  
-  // const api = axios.create({
-  //   baseurl: import.meta.env.VITE_API_URI_DEV
-  // });
-  // const getdata = async () => {
-  //   const response = await api.get('/api-endpoint')
-  //   console.log(response);
-  //   return response.data;
-  // }
-
-  // useEffect(()=>{
-  //   getdata();
-  // },[]);
+  useEffect(()=>{
+    const getdata = async () => {
+      const response = await api.get("/find/3pm-client-MECAZON/products");
+      console.log(response);
+      return response.data;
+    }
+    getdata();
+  },[]);
 
   const [groceries, setGroceries] = useState([]);
   useEffect(() => {
     async function fetchGroceries() {
       try {
-        const response = await axios.get("/dummy-data/groceries.json");
+        const response = await axios.get("/dummy-data/products.json");
         setGroceries(response.data);
       } catch (err) {
         console.error("something went wrong fetching groceries", err);
