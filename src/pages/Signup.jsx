@@ -3,8 +3,10 @@ import styles from "../styles/UserForms.module.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react'
-import axios from "axios";
+import baseURL from "../../baseURL";
+
 export default function Signup() {
+  const api = baseURL();
   const navigate = useNavigate()
   // async function fetchUserData(userData) {
   //   try {
@@ -55,8 +57,13 @@ export default function Signup() {
 
     if (password == confirmPassword) {
       let new_user = {username, email, password};
-      let request = await axios.post('/add-user/3pm-server-MECAZON/users', new_user);
-      console.log(request, new_user);
+      console.log(new_user);
+      try {
+        let request = await api.post('/sign-up/3pm-server-MECAZON/users', new_user);
+        console.log(request, new_user);
+      } catch (error) {
+        alert(error.response.data.error);
+      }
     } else {
       alert("Passwords do not match up");
       form.confirmPassword.value = '';

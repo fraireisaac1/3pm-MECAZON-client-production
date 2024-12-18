@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import styles from "../styles/Groceries.module.css";
 import GroceryList from "../components/GroceryList";
 import axios from "axios";
+import baseURL from "../../baseURL";
 
 export default function Groceries({searchValue, setModalData}) {
   const [groceries, setGroceries] = useState([]);
@@ -9,6 +10,7 @@ export default function Groceries({searchValue, setModalData}) {
   const [categories, setCategories] = useState([]);
   const resultsTextRef = useRef(null);
   const imgRefs = useRef([]);
+  const api = baseURL();
 
   function setSrc(i) {
     setTimeout(() => {
@@ -20,8 +22,7 @@ export default function Groceries({searchValue, setModalData}) {
 
   async function fetchGroceries() {
     try {
-      const response = await axios.get("/dummy-data/products.json");
-      // console.log(response.data);
+      const response = await api.get("/find/3pm-client-MECAZON/products");
 
       let tempArray = [];
       response.data.forEach(i => {
@@ -41,7 +42,7 @@ export default function Groceries({searchValue, setModalData}) {
 
   async function renderSearchResults() {
     if (searchValue) {
-      const response = await axios.get("/dummy-data/products.json");
+      const response = await api.get("/find/3pm-client-MECAZON/products");
       let results = response.data;
 
       if (categoryFilterState !== "") {
@@ -53,7 +54,7 @@ export default function Groceries({searchValue, setModalData}) {
       setGroceries(searchResults);
     } else if (searchValue === "") {
       if (categoryFilterState !== "") {
-        const response = await axios.get("/dummy-data/products.json");
+        const response = await api.get("/find/3pm-client-MECAZON/products");
 
         setGroceries(response.data.filter(i => i.category === categoryFilterState));
       } else {
@@ -78,7 +79,7 @@ export default function Groceries({searchValue, setModalData}) {
 
   useEffect(() => {
     async function renderFilteredResults() {
-      const response = await axios.get("/dummy-data/products.json");
+      const response = await api.get("/find/3pm-client-MECAZON/products");
       let searchResults = response.data;
 
       if (searchValue) {

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
 import Carousel from "../components/Carousel";
-import axios from "axios";
 import baseURL from "../../baseURL";
 
 export default function Home({setModalData}) {
@@ -19,18 +18,6 @@ export default function Home({setModalData}) {
     }
     getdata();
   },[]);
-
-  // useEffect(() => {
-  //   async function fetchproducts() {
-  //     try {
-  //       const response = await axios.get("/dummy-data/products.json");
-  //       setProducts(response.data);
-  //     } catch (err) {
-  //       console.error("something went wrong fetching products", err);
-  //     }
-  //   }
-  //   fetchproducts();
-  // }, []);
 
   return <>
     <Carousel count={Math.ceil(self.innerWidth/200)<10?Math.ceil(self.innerWidth/200):10} setModalData={setModalData} data={products}/>

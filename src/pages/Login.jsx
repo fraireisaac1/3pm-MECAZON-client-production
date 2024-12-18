@@ -1,7 +1,6 @@
 // basic skeleton for login
 import styles from "../styles/UserForms.module.css";
 import { Link, useNavigate } from "react-router-dom"
-import axios from 'axios'
 import baseURL from "../../baseURL";
 
 export default function Login() {
@@ -12,13 +11,15 @@ export default function Login() {
     const form = e.target;
     let email = form.email.value;
     let password = form.password.value;
-    form.password.value = "";
-    let user = {email, password};
-    let response = await api.get("/find/3pm-server-MECAZON/users");
-    if (response.status == 200) {
-      console.log(response.data);
-      localStorage.setItem('currentUser', JSON.stringify(response.data));
-      navigate('/');
+    try {
+      let response = await api.get(`/log-in/3pm-server-MECAZON/users/${email}/${password}`);
+      form.password.value = "";
+      if (response.status = 200) {
+        localStorage.setItem('currentUser', JSON.stringify(response.data));
+        navigate('/');
+      }
+    } catch (error) {
+      alert(error.response.data.error);
     }
   }
 

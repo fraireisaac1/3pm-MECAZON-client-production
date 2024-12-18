@@ -32,8 +32,7 @@ export default function Carousel({ count, data, setModalData }) {
         </button>
         <div className={styles.items}>
           {data.slice(index, index + count).map((i) => (
-            <div className={styles.item} key={i.id}>
-              {/* src="https://avatars.githubusercontent.com/u/131179727?s=200&v=4" */}
+            <div className={styles.item} key={Math.random()}>
               <img
                 className={styles.Image}
                 onClick={() => {
