@@ -2,41 +2,38 @@ import { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
 import Carousel from "../components/Carousel";
 import axios from "axios";
+import baseURL from "../../baseURL";
 
 export default function Home({setModalData}) {
-  const api = axios.create({
-    // baseurl =
-    // run a code space on https://github.com/WestMecCoding/3pm-MECAZON-server-production
-    // use TeamC-Integration branch
-    // command: npm run start:prod
-    // go to ports tab in terminal and make the 3000 port public under the visibility column
-    baseURL: "https://stunning-umbrella-7v95w67w6qg6cr7v6-3000.app.github.dev/",
-  });
-
+  const api = baseURL();
+  
+  const [products, setProducts] = useState([]);
+  
   useEffect(()=>{
     const getdata = async () => {
       const response = await api.get("/find/3pm-client-MECAZON/products");
-      console.log(response);
+      let data = response.data;
+      console.log(data);
+      setProducts(data);
       return response.data;
     }
     getdata();
   },[]);
 
-  const [groceries, setGroceries] = useState([]);
-  useEffect(() => {
-    async function fetchGroceries() {
-      try {
-        const response = await axios.get("/dummy-data/products.json");
-        setGroceries(response.data);
-      } catch (err) {
-        console.error("something went wrong fetching groceries", err);
-      }
-    }
-    fetchGroceries();
-  }, []);
+  // useEffect(() => {
+  //   async function fetchproducts() {
+  //     try {
+  //       const response = await axios.get("/dummy-data/products.json");
+  //       setProducts(response.data);
+  //     } catch (err) {
+  //       console.error("something went wrong fetching products", err);
+  //     }
+  //   }
+  //   fetchproducts();
+  // }, []);
 
   return <>
-    <Carousel count={Math.ceil(self.innerWidth/200)<10?Math.ceil(self.innerWidth/200):10} setModalData={setModalData} data={groceries}/>
+    <Carousel count={Math.ceil(self.innerWidth/200)<10?Math.ceil(self.innerWidth/200):10} setModalData={setModalData} data={products}/>
     <div className={styles.banner}>
       <img className={styles.image} src="https://media-public.canva.com/ADwTE/MAGHDfADwTE/1/s.png" alt="Black Man" draggable="false"/>
       <div className={styles.column}>

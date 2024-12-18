@@ -18,17 +18,7 @@ export default function Carousel({ count, data, setModalData }) {
       } else {
         setIndex(next_num);
       }
-  };
-
-  // function setSrc(i) {
-  //   setTimeout(() => {
-  //     const currentImg = imgRefs.current[i.id];
-
-  //     if (currentImg) {
-  //       currentImg.src = `https://drive.google.com/thumbnail?id=${/[A-z\-0-9]{10,}/g.exec(i.product_img)}`;
-  //     }
-  //   }, i.id * 1000);
-  // }
+    };
 
     return (
       <div className={styles.row}>
