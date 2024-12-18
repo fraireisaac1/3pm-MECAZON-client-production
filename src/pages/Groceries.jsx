@@ -73,7 +73,7 @@ export default function Groceries({searchValue, setModalData}) {
   // }, [groceries]);
 
   useEffect(() => {
-    console.log(categoryFilterState);
+    // console.log(categoryFilterState);
     renderSearchResults();
   }, [searchValue]);
 
@@ -116,7 +116,7 @@ export default function Groceries({searchValue, setModalData}) {
           <select onChange={(e) => {setCategory(e.target.value)}} name="categoryFilter" id="categoryFilter">
             <option value="">--Choose a category--</option>
             {categories.map(i => (
-              <option value={i}>{i}</option>
+              <option key={Math.random()} value={i}>{i}</option>
             ))}
           </select>
         </div>

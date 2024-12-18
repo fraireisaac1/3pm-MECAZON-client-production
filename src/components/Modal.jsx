@@ -55,7 +55,7 @@ export default function Modal({ data, setModalData }) {
     }, [data]);
 
   useEffect(() => {
-    console.log(colorFilter)
+    // console.log(colorFilter)
   }, [colorFilter])
 
     return (
