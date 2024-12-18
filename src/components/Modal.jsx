@@ -10,6 +10,7 @@ export default function Modal({ data, setModalData }) {
   const [quantity, setQuantity] = useState(1);
   const [colorFilter, setColor] = useState("");
     const modalRef = useRef(null);
+    const imgFilterRef = useRef(null);
 
     async function fetchProducts() {
       try {
@@ -55,7 +56,11 @@ export default function Modal({ data, setModalData }) {
     }, [data]);
 
   useEffect(() => {
-    // console.log(colorFilter)
+    if (colorFilter !== "" && imgFilterRef.current) {
+      imgFilterRef.current.className = `${styles[colorFilter]}`;
+    } else if (colorFilter !== "" && imgFilterRef.current) {
+      imgFilterRef.current.className = ``;
+    }
   }, [colorFilter])
 
     return (
@@ -63,7 +68,7 @@ export default function Modal({ data, setModalData }) {
         <div className={styles.modalContent}>
           <div className={styles.row}>
             <div className={styles.imgDisplay}>
-              <img className={styles.productImg} width="150" height="150" src={data.item ? `/products/${data.item.replace(/\s+/g, "")}.jpg` : null} alt={data.item} />
+              <img className={styles.productImg} width="150" height="150" src={data.item ? `/products/${data.item.replace(/\s+/g, "")}.jpg` : null} ref={data.colorArr ? imgFilterRef : null} alt={data.item} />
             </div>
 
             <div className={styles.itemInformation}>
@@ -73,7 +78,7 @@ export default function Modal({ data, setModalData }) {
               <p>{data.details}</p>
 
               <div className={styles.buttonSection}>
-                {data.colorArr ? (<select onChange={(e) => {setColor(e.target.value)}}><option value="">--Select a color--</option>{data.colorArr.map(color => (<option value={color}>{color}</option>))}</select>) : null}
+                {data.colorArr ? <select onChange={(e) => {setColor(e.target.value)}}><option value="">--Select a color--</option>{data.colorArr.map(color => (<option value={color}>{color}</option>))}</select> : null}
                 <button onClick={() => {for(let i = 0; i < quantity; i++) {addToCartFunc(data)}}} className={styles.addCartButton}>Add to Cart</button>
                 <div className={styles.quantitySelector}>
                   <div>

@@ -1,7 +1,8 @@
 [
     {
-        "username": "brian",
-        "email": "brian@poo.com",
-        "password": "poo"
+        "name":"randy",
+        "email":"randal@rad.com",
+        "password": "54321",
+        "location": "alabama"
     }
 ]
