@@ -70,7 +70,7 @@ export default function Modal({ data, setModalData }) {
               <h1>{data.item}</h1>
               <h2>About this item:</h2>
 
-              <p>${data.details}</p>
+              <p>{data.details}</p>
 
               <div className={styles.buttonSection}>
                 {data.colorArr ? (<select onChange={(e) => {setColor(e.target.value)}}><option value="">--Select a color--</option>{data.colorArr.map(color => (<option value={color}>{color}</option>))}</select>) : null}
