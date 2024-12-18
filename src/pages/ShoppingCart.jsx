@@ -34,10 +34,8 @@ export default function ShoppingCart() {
                   src={i.item ? `/products/${i.item.replace(/\s+/g, "")}.jpg` : null}
                   alt={i.item}
                   draggable="false"
-                  width="150"
-                  height="150"
                 />
-                <h1 className={styles.text}>{i.name}</h1>
+                <h1 className={styles.text}>{i.item}</h1>
                 <h1 className={styles.text}>
                   {i.price_in_usd ? "$" : ""}
                   {i?.price_in_usd}
