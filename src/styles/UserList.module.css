@@ -46,7 +46,7 @@ tr:nth-child(even) td {
 
 h1 {
   text-align: left;
-  padding: 2rem 0 0 0;
+  /* padding: 2rem 0 0 0; */
   /* float: left; */
 }
 /* Button */
