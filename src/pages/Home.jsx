@@ -22,11 +22,24 @@ export default function Home({setModalData}) {
   return <>
     <Carousel count={Math.ceil(self.innerWidth/200)<10?Math.ceil(self.innerWidth/200):10} setModalData={setModalData} data={products}/>
     <div className={styles.banner}>
-      <img className={styles.image} src="https://media-public.canva.com/ADwTE/MAGHDfADwTE/1/s.png" alt="Black Man" draggable="false"/>
-      <div className={styles.column}>
-        <h1 className={styles.title}>Business solutions</h1>
-        <p className={styles.text}>Slide for Von dotn slime ur homye. Praesent dui leo, euismod et purus eu, iaculis luctus mauris. Cras a dolor eget nisi aliquet pulvinar eu ut elit. Suspendisse dictum magna quis metus pulvin.</p>
+        <img
+          className={styles.image}
+          src="/homeAd.PNG"
+          alt="Black Man"
+          draggable="false"
+        />
+        <div className={styles.column}>
+          <h1 className={styles.title}>Mecazon TitanX Pro 9000 Deluxe 2.0</h1>
+          <p className={styles.text}>
+            Experience cutting-edge technology with the Mecazon TitanX Pro 9000
+            Deluxe 2.0, designed with a Radeon RTX 4090 TI, 256gb DDR5 RAM,
+            Ryzen Core I9 12th Generation CPU, 10000 watt power bank, 16
+            terabytes NVME 3.0 storage, and water-cooled. Crafted with precision
+            and love, the TitanX Pro delivers unmatched speed, performance, and
+            reliability. Your Roblox experience.
+          </p>
+          <p className={styles.text2}>*May blow up</p>
+        </div>
       </div>
-    </div>
   </>;
 }
