@@ -70,7 +70,7 @@ export default function Signup() {
         <br />
         <input
           className={styles.Input}
-          type="text"
+          type="password"
           id="confirmPassword"
           name="confirmPassword"
           required
