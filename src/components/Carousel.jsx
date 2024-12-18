@@ -39,7 +39,7 @@ export default function Carousel({ count, data, setModalData }) {
                 onClick={() => {
                   setModalData(i);
                 }}
-                src={`/products/${i.item.replace(/\s+/g, "")}.jpg`}
+                src={i.item ? `/products/${i.item.replace(/\s+/g, "")}.jpg` : null}
                 alt={i.item}
               />
               <div className={styles.subitem}>
