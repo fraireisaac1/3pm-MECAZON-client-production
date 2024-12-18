@@ -27,7 +27,7 @@ export default function App() {
       let api = baseURL();
       let user_id = JSON.parse(localStorage.getItem("currentUser"));
 
-      if (user_id != null) {
+      if (user_id != null && user_id?.isAdmin != null) {
         try {
           const response = await api.get(`/find/3pm-server-MECAZON/employees/`);
           if (response.status == 200) {
