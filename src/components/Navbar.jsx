@@ -5,22 +5,27 @@ import baseURL from "../../baseURL";
 import { useState } from "react";
 
 export default function Navbar({ setSearchValue }) {
-  const [route, setRoute] = useState('/login');
   const [phrase, setPhrase] = useState('Sign In');
+  const [tryIsAdmin, setTryAdmin] = useState(false);
   const api = baseURL();
 
   async function isLoggedIn() {
     const user_id = JSON.parse(localStorage.getItem('currentUser'));
     if (user_id != null) {
       try {
-        const response = await api.get(`/retrieve-user/3pm-server-MECAZON/users/${user_id}`);
+        const response = await api.get(`/retrieve-user/3pm-server-MECAZON/${tryIsAdmin?"employees":"users"}/${user_id}`);
         if (response.status == 200) {
-          const username = response.data.contact_info.username;
-          console.log(username);
-          setPhrase(`Hello ${username}`);
-          setRoute('/shopping-cart');
+          const username = response.data.username;
+          setPhrase(`Hello, ${username}`);
         }
       } catch (error) {
+        if (error.status == 500) {
+          if (tryIsAdmin) {
+            localStorage.setItem("currentUser", null);
+          } else {
+            setTryAdmin(true);
+          }
+        }
         console.log(error.response.data.error);
       }
     }
@@ -40,7 +45,7 @@ export default function Navbar({ setSearchValue }) {
       </div>
 
       <div className={`${styles.col} ${styles.userButtons}`}>
-        <Link className={styles.loginLink} to={route}>
+        <Link className={styles.loginLink} to={"login"}>
           <p id="phrase" >{phrase}</p>
 
           <img src="/account_icon.svg" height="30px" width="30px" alt="user account icon" />

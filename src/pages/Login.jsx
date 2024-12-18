@@ -17,6 +17,7 @@ export default function Login() {
       if (response.status == 200) {
         localStorage.setItem('currentUser', JSON.stringify(response.data));
         navigate('/');
+        location.reload();
       }
     } catch (error) {
       alert(error.response.data.error);
