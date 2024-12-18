@@ -17,9 +17,7 @@ export default function Carousel({ count, data, setModalData }) {
       } else {
         setIndex(next_num);
       }
-  };
-
-  console.log(data);
+    };
 
     return (
       <div className={styles.row}>
