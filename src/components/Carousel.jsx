@@ -17,7 +17,9 @@ export default function Carousel({ count, data, setModalData }) {
       } else {
         setIndex(next_num);
       }
-    };
+  };
+
+  console.log(data);
 
     return (
       <div className={styles.row}>
@@ -26,10 +28,10 @@ export default function Carousel({ count, data, setModalData }) {
             {data.slice(index, index + count).map(i => (
               <div className={styles.item} key={i.id}>
                 {/* src="https://avatars.githubusercontent.com/u/131179727?s=200&v=4" */}
-                <img className={styles.Image} onClick={() => {setModalData(i)}} src={"https://picsum.photos/seed/"+i.name+"/200/200.jpg"} alt="" />
+                <img className={styles.Image} onClick={() => {setModalData(i)}} src={new URL(i.product_img, import.meta.url).href} alt={i.item} />
                 <div className={styles.subitem}>
-                  <h1 className={styles.text}>{i.name}</h1>
-                  <h1 className={styles.price}>${i.price}</h1>
+                  <h1 className={styles.text}>{i.item}</h1>
+                  <h1 className={styles.price}>${i.price_in_usd}</h1>
                   <button onClick={() => {addToCartFunc(i)}} className={styles.addToCartBtn}>Add to Cart</button>
                 </div>
               </div>

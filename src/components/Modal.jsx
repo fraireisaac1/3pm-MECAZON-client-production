@@ -5,22 +5,21 @@ import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
 export default function Modal({ data, setModalData }) {
-  const [products, setProducts] = useState([]);
-  const [isModalOpen, setModalStatus] = useState(false);
+    const [products, setProducts] = useState([]);
+    const [isModalOpen, setModalStatus] = useState(false);
   const [quantity, setQuantity] = useState(0);
-  const modalRef = useRef(null);
-  const [reviewText, setReviewText] = useState("");
-  const reviewRef = useRef(null);
+  const [colorFilter, setColor] = useState("");
+    const modalRef = useRef(null);
 
-  async function fetchProducts() {
-    try {
-      const response = await axios.get("/dummy-data/groceries.json");
-      // console.log(response.data);
-      setProducts(response.data);
-    } catch (err) {
-      console.error("something went wrong fetching products", err);
+    async function fetchProducts() {
+      try {
+        const response = await axios.get("/dummy-data/products.json");
+        // console.log(response.data);
+        setProducts(response.data);
+      } catch (err) {
+        console.error("something went wrong fetching products", err);
+      }
     }
-  }
 
   useEffect(() => {
     fetchProducts();
@@ -50,62 +49,36 @@ export default function Modal({ data, setModalData }) {
   useEffect(() => {
     setModalStatus(true);
 
-    if (isModalOpen) {
-      modalRef.current.showModal();
-    }
-  }, [data]);
+        if (isModalOpen) {
+            modalRef.current.showModal();
+        }
+    }, [data]);
 
-  return (
-    <dialog
-      ref={modalRef}
-      onKeyDown={(e) => {
-        e.key === "Escape" ? closeModal() : null;
-      }}
-      className={styles.container}
-    >
-      <div className={styles.modalContent}>
-        <div className={styles.row}>
-          <div className={styles.imgDisplay}>
-            <img
-              className={styles.productImg}
-              src={"https://picsum.photos/seed/" + data.name + "/200/200.jpg"}
-            />
-          </div>
+  useEffect(() => {
+    console.log(colorFilter)
+  }, [colorFilter])
 
-          <div className={styles.itemInformation}>
-            <h1>{data.name}</h1>
-            <h2>About this item:</h2>
+    return (
+      <dialog ref={modalRef} onKeyDown={(e) => {e.key === "Escape" ? closeModal() : null}} className={styles.container}>
+        <div className={styles.modalContent}>
+          <div className={styles.row}>
+            <div className={styles.imgDisplay}>
+              <img className={styles.productImg} src={new URL(data.product_img, import.meta.url).href} alt={data.item} />
+            </div>
 
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus
-              eius, laboriosam aperiam quis quibusdam facilis maiores quam fugit
-              perspiciatis modi totam tempore soluta non quidem corrupti aut
-              exercitationem, sapiente nisi.
-            </p>
+            <div className={styles.itemInformation}>
+              <h1>{data.item}</h1>
+              <h2>About this item:</h2>
 
-            <div className={styles.buttonSection}>
-              <button
-                onClick={() => {
-                  for (let i = 0; i < quantity; i++) {
-                    addToCartFunc(data);
-                    closeModal();
-                  }
-                  alert(`${data.name} was added to your cart.`);
-                }}
-                className={styles.addCartButton}
-              >
-                Add to Cart
-              </button>
-              <div className={styles.quantitySelector}>
-                <div>
-                  <button
-                    onClick={() => {
-                      quantity > 0 ? setQuantity((prev) => (prev -= 1)) : null;
-                    }}
-                  >
-                    -
-                  </button>
-                </div>
+              <p>${data.details}</p>
+
+              <div className={styles.buttonSection}>
+                {data.colorArr ? (<select onChange={(e) => {setColor(e.target.value)}}><option value="">--Select a color--</option>{data.colorArr.map(color => (<option value={color}>{color}</option>))}</select>) : null}
+                <button onClick={() => {for(let i = 0; i < quantity; i++) {addToCartFunc(data)}}} className={styles.addCartButton}>Add to Cart</button>
+                <div className={styles.quantitySelector}>
+                  <div>
+                    <button onClick={() => {quantity > 0 ? setQuantity(prev => prev -= 1) : null}}>-</button>
+                  </div>
 
                 <div>
                   <h2>{quantity}</h2>
@@ -129,27 +102,14 @@ export default function Modal({ data, setModalData }) {
           <div className={styles.otherInfo}>
             <h1>⭐⭐⭐⭐⭐</h1>
 
-            <div>
-              <h2>Reviews</h2>
-              <p>{data.reviews}</p>
-              <textarea
-                value={reviewText}
-                ref={reviewRef}
-                placeholder={"Type your review here"}
-                onChange={handleReview}
-              ></textarea>
-              <p>Your review: {reviewText}</p>
-              <button onClick={addReview}>Submit Review</button>
+              <h1>${data.price_in_usd}</h1>
             </div>
 
-            <h1>${data.price}</h1>
+            <div className={styles.suggestedProducts}>
+              <h2>Suggested Products</h2>
+              <Carousel setModalData={setModalData} count={3} data={products.filter(i => i.category === data.category && i.item !== data.item)} />
+            </div>
           </div>
-
-          <div className={styles.suggestedProducts}>
-            <h2>Suggested Products</h2>
-            <Carousel setModalData={setModalData} count={3} data={products} />
-          </div>
-        </div>
 
         <button onClick={closeModal}>Close</button>
       </div>
