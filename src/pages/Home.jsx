@@ -4,18 +4,23 @@ import Carousel from "../components/Carousel";
 import axios from "axios";
 
 export default function Home({setModalData}) {
-  // const api = axios.create({
-  //   baseurl: import.meta.env.VITE_API_URI_DEV
-  // });
-  // const getdata = async () => {
-  //   const response = await api.get('/api-endpoint')
-  //   console.log(response);
-  //   return response.data;
-  // }
+  const api = axios.create({
+    // baseurl =
+    // run a code space on https://github.com/WestMecCoding/3pm-MECAZON-server-production
+    // use TeamC-Integration branch
+    // command: npm run start:prod
+    // go to ports tab in terminal and make the 3000 port public under the visibility column
+    baseURL: "https://stunning-umbrella-7v95w67w6qg6cr7v6-3000.app.github.dev/",
+  });
 
-  // useEffect(()=>{
-  //   getdata();
-  // },[]);
+  useEffect(()=>{
+    const getdata = async () => {
+      const response = await api.get("/find/3pm-client-MECAZON/products");
+      console.log(response);
+      return response.data;
+    }
+    getdata();
+  },[]);
 
   const [groceries, setGroceries] = useState([]);
   useEffect(() => {
