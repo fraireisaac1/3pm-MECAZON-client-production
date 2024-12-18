@@ -7,7 +7,7 @@ import axios from "axios";
 export default function Modal({ data, setModalData }) {
     const [products, setProducts] = useState([]);
     const [isModalOpen, setModalStatus] = useState(false);
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
   const [colorFilter, setColor] = useState("");
     const modalRef = useRef(null);
 
