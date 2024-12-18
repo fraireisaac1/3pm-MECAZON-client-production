@@ -12,7 +12,7 @@ export default function Signup() {
     try {
       const data = await axios.get("/dummy-data/users.json");
       const users = JSON.stringify(data);
-      localStorage.setItem('data', users)
+      // localStorage.setItem('data', users)
 
 
       users.push(userData);

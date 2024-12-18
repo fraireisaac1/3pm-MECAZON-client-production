@@ -37,6 +37,7 @@ export default function Login() {
             alt="MECAZON LOGO"
           />{" "}
           MECAZON
+          <p>ADMIN</p>
         </div>
         <h1 className={styles.Header}>Log in</h1>
         <form action="">
@@ -67,10 +68,8 @@ export default function Login() {
           <button onClick={checkSessionData} type="submit">
             Login
           </button>
-          <p className={styles.RegisterText}>New to MECAZON?</p>
-          <Link to="/register">Sign Up</Link>
-          <p className={styles.RegisterText}>MECAZON Admin?</p>
-          <Link to="/admin">Admin</Link>
+          <p className={styles.RegisterText}>MECAZON customer?</p>
+          <Link to="/login">Customer</Link>
         </form>
       </div>
     );

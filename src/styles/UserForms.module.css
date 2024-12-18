@@ -18,6 +18,10 @@
     color: #f78e11;
     text-shadow: 0.25rem 0.25rem 1rem rgba(0,0,0,0.25);
 }
+.Brand p{
+color: #508aa5;
+display: absolute;
+}
 
 .Logo {
     width: 5rem;
