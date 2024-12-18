@@ -36,7 +36,7 @@ export default function Login() {
             src="/MECAZON_logo.svg"
             alt="MECAZON LOGO"
           />{" "}
-          MECAZON
+          <h1>MECAZON</h1>
           <p>ADMIN</p>
         </div>
         <h1 className={styles.Header}>Log in</h1>
